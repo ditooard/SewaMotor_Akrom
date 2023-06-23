@@ -9,6 +9,7 @@ class Sewa extends Model
 {
     use HasFactory;
     protected $table='sewa';
+    public $timestamps=false;
     protected $fillable = [
         'tipe_sewa',
         'tipe_motor',

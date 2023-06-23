@@ -23,7 +23,7 @@
     @if (auth()->user()->level == "customer")
 
     <li class="nav-item active">
-        <a class="nav-link" href="sewa">
+        <a class="nav-link" href="{{ route('createSewa') }}">
             <i class="fa fa-car" aria-hidden="true"></i>
             <span>Sewa Kendaraan</span></a>
     </li>

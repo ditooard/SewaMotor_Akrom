@@ -20,6 +20,8 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/sewaMotor', [SewaController::class,'index'])->name('sewaMotor');
+Route::get('/create', [SewaController::class,'create'])->name('createSewa');
+Route::post('/store', [SewaController::class,'store'])->name('storeSewa');
 
 Route::get('/daftarPenyewa', function () {
     return view('daftarPenyewa');
@@ -49,9 +51,6 @@ Route::get('/membership', function () {
     return view('membership');
 });
 
-Route::get('/sewa', function () {
-    return view('sewa');
-});
 
 Route::get('/inputKtp', function () {
     return view('inputKtp');

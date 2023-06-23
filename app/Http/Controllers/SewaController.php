@@ -11,4 +11,13 @@ class SewaController extends Controller
         $sewa = Sewa::all();
         return view('statusSewa',compact(['sewa']));
     }
+
+    public function create(){
+        return view('sewa');
+    }
+    public function store(Request $request){
+        // dd($request->all());
+        Sewa::create($request->except(['_token','submit']));
+        return redirect('/statusSewaCst');
+    }
 }

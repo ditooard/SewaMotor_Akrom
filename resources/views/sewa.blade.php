@@ -80,54 +80,57 @@
                               <div class="card-body">
                               </div>
                               <div class="card-body">
-                                <form action="https://formbold.com/s/FORM_ID" method="POST">
-
+                                
+                                <form action="/store" method="POST">
+                                  @csrf
                                   <div class="formbold-mb-3 mt-0">
                                       <label class="formbold-form-label">Tipe Sewa</label>
-                                      <select class="formbold-form-input" name="occupation" id="occupation">
-                                        <option value="male">Premium</option>
-                                        <option value="female">Spesial</option>
+                                      <select class="formbold-form-input" name="tipe_sewa" id="occupation">
+                                        <option>Input Tipe Sewa</option>
+                                        <option value="Premium">Premium</option>
+                                        <option value="Spesial">Spesial</option>
                                       </select>
                                   </div>
-
                                     <div class="formbold-mb-3">
                                       <label class="formbold-form-label">Tipe Motor</label>
-                                      <select class="formbold-form-input" name="occupation" id="occupation">
-                                        <option value="male">Honda Beat</option>
-                                        <option value="female">Honda Genio </option>
-                                        <option value="female">Yamaha Nmax </option>
-                                        <option value="female">Honda PCX </option>
+                                      <select class="formbold-form-input" name="tipe_motor">
+                                        <option>Input Tipe Motor</option>
+                                        <option value="Honda Beat">Honda Beat</option>
+                                        <option value="Honda Genio">Honda Genio </option>
+                                        <option value="Yamaha Nmax">Yamaha Nmax </option>
+                                        <option value="Honda PCX">Honda PCX </option>
                                       </select>
                                     </div>
-
-                                  <div class="formbold-input-wrapp formbold-mb-3">
+                                  
+                                    <div class="formbold-input-wrapp formbold-mb-3">
                                     <label for="firstname" class="formbold-form-label"> Lama Sewa </label>
                                     <div class="formbold-mb-3">
                                       <label for="dob" class="formbold-form-label"> Mulai</label>
-                                      <input type="date" name="dob" id="dob" class="formbold-form-input" />
+                                      <input type="date" name="mulai_sewa" id="dob" class="formbold-form-input" />
                                     </div>
                                     <div class="formbold-mb-3">
                                       <label for="dob" class="formbold-form-label"> Selesai</label>
-                                      <input type="date" name="dob" id="dob" class="formbold-form-input" />
+                                      <input type="date" name="selesai_sewa" id="dob" class="formbold-form-input" />
                                     </div>
                                   </div>
-                            
+                                  
                                   <div class="formbold-mb-3">
                                       <label class="formbold-form-label">Jumlah Unit</label>
-                                      <select class="formbold-form-input" name="occupation" id="occupation">
-                                        <option value="male">1</option>
-                                        <option value="female">2</option>
+                                      <select class="formbold-form-input" name="jumlah_unit" id="occupation">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
                                       </select>
                                     </div>
 
                                   <div class="formbold-mb-3">
                                     <label for="email" class="formbold-form-label">Keperluan Sewa</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keperluan_sewa"></textarea>
                                   </div>
                                   <div class="text-center">
                                       <button class="formbold-btn">Submit</button>
                                   </div>
                                 </form>
+
                               </div>
                             </div>
                             <style>
