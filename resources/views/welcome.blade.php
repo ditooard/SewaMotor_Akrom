@@ -18,7 +18,7 @@
 	<meta property="og:type" content="article" />
 
     <!-- Website Title -->
-    <title>Tivo - SaaS App HTML Landing Page Template</title>
+    <title>AKROM</title>
     
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
@@ -109,15 +109,15 @@
                 <div class="row">
                     <div class="col-lg-6 col-xl-5">
                         <div class="text-container">
-                            <h1>SaaS App HTML Landing Page</h1>
-                            <p class="p-large">Use Tivo to automate your marketing actions in order to reach a much larger audience</p>
-                            <a class="btn-solid-lg page-scroll" href="sign-up.html">SIGN UP</a>
+                            <h1>AKROM RENTAL MOTOR</h1>
+                            <p class="p-large">Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan pelayanan terbaik kami</p>
+                            <a class="btn-solid-lg page-scroll" href="login">SEWA SEKARANG</a>
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6 col-xl-7">
                         <div class="image-container">
                             <div class="img-wrapper">
-                                <img class="img-fluid" src="images/header-software-app.png" alt="alternative">
+                                <img class="img-fluid" src="images/motor1.webp" alt="alternative" height="1000px" width="1000px">
                             </div> <!-- end of img-wrapper -->
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
