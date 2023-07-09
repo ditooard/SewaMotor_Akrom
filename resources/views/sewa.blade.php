@@ -49,8 +49,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -64,356 +64,422 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                  <!-- Illustrations -->
-                  <div class="row">
-                      <!-- Pie Chart -->
-                      <div class="col-xl-4 col-lg-5">
-                          <div class="card shadow">
-                              <!-- Card Header - Dropdown -->
-                              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <h6 class="m-0 font-weight-bold text-primary">INPUT DATA KENDARAAN</h6>
-                              </div>
-                              <!-- Card Body -->
-                              <div class="card-body">
-                              </div>
-                              <div class="card-body">
-                                
-                                <form action="/store" method="POST">
-                                  @csrf
-                                  <div class="formbold-mb-3 mt-0">
-                                      <label class="formbold-form-label">Tipe Sewa</label>
-                                      <select class="formbold-form-input" name="tipe_sewa" id="occupation">
-                                        <option>Input Tipe Sewa</option>
-                                        <option value="Premium">Premium</option>
-                                        <option value="Spesial">Spesial</option>
-                                      </select>
-                                  </div>
-                                    <div class="formbold-mb-3">
-                                      <label class="formbold-form-label">Tipe Motor</label>
-                                      <select class="formbold-form-input" name="tipe_motor">
-                                        <option>Input Tipe Motor</option>
-                                        <option value="Honda Beat">Honda Beat</option>
-                                        <option value="Honda Genio">Honda Genio </option>
-                                        <option value="Yamaha Nmax">Yamaha Nmax </option>
-                                        <option value="Honda PCX">Honda PCX </option>
-                                      </select>
-                                    </div>
-                                  
-                                    <div class="formbold-input-wrapp formbold-mb-3">
-                                    <label for="firstname" class="formbold-form-label"> Lama Sewa </label>
-                                    <div class="formbold-mb-3">
-                                      <label for="dob" class="formbold-form-label"> Mulai</label>
-                                      <input type="date" name="mulai_sewa" id="dob" class="formbold-form-input" />
-                                    </div>
-                                    <div class="formbold-mb-3">
-                                      <label for="dob" class="formbold-form-label"> Selesai</label>
-                                      <input type="date" name="selesai_sewa" id="dob" class="formbold-form-input" />
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="formbold-mb-3">
-                                      <label class="formbold-form-label">Jumlah Unit</label>
-                                      <select class="formbold-form-input" name="jumlah_unit" id="occupation">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                      </select>
-                                    </div>
+                    <!-- Illustrations -->
+                    <div class="row">
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">INPUT DATA PENYEWAAN</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                </div>
+                                <div class="card-body">
 
-                                  <div class="formbold-mb-3">
-                                    <label for="email" class="formbold-form-label">Keperluan Sewa</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keperluan_sewa"></textarea>
-                                  </div>
-                                  <div class="text-center">
-                                      <button class="formbold-btn">Submit</button>
-                                  </div>
-                                </form>
+                                    <form action="/store" method="POST">
+                                        @csrf
+                                        <div class="formbold-mb-3 mt-0">
+                                            <label class="formbold-form-label">Tipe Sewa</label>
+                                            <select class="formbold-form-input" name="tipe_sewa" id="occupation">
+                                                <option selected disabled>Input Tipe Sewa</option>
+                                                <option value="Premium">Premium</option>
+                                                <option value="Spesial">Spesial</option>
+                                            </select>
+                                        </div>
+                                        <div class="formbold-mb-3">
+                                            <label class="formbold-form-label">Tipe Motor</label>
+                                            <select class="formbold-form-input" name="tipe_kendaraan">
+                                                <option selected disabled>Input Tipe Motor</option>
+                                                @foreach ($dataKendaraan as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->tipe_kendaraan }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
-                              </div>
+                                        <div class="formbold-input-wrapp formbold-mb-3">
+                                            <label for="firstname" class="formbold-form-label"> Lama Sewa </label>
+                                            <div class="formbold-mb-3">
+                                                <label for="dob" class="formbold-form-label"> Mulai</label>
+                                                <input type="date" name="mulai_sewa" id="dob"
+                                                    class="formbold-form-input" />
+                                            </div>
+                                            <div class="formbold-mb-3">
+                                                <label for="dob" class="formbold-form-label"> Selesai</label>
+                                                <input type="date" name="selesai_sewa" id="dob"
+                                                    class="formbold-form-input" />
+                                            </div>
+                                        </div>
+                                        <div class="formbold-mb-3">
+                                            <label for="email" class="formbold-form-label">Keperluan Sewa</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keperluan_sewa"></textarea>
+                                        </div>
+                                        <div class="text-center">
+                                            <button class="formbold-btn">Submit</button>
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
                             <style>
-                              @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-                              * {
-                                margin: 0;
-                                padding: 0;
-                                box-sizing: border-box;
-                              }
-                              body {
-                                font-family: 'Inter', sans-serif;
-                              }
-                              .formbold-mb-3 {
-                                margin-bottom: 15px;
-                              }
-                              .formbold-relative {
-                                position: relative;
-                              }
-                              .formbold-opacity-0 {
-                                opacity: 0;
-                              }
-                              .formbold-stroke-current {
-                                stroke: #ffffff;
-                                z-index: 999;
-                              }
-                              #supportCheckbox:checked ~ div span {
-                                opacity: 1;
-                              }
-                              #supportCheckbox:checked ~ div {
-                                background: #6a64f1;
-                                border-color: #6a64f1;
-                              }
-                            
-                              .formbold-main-wrapper {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                padding: 48px;
-                              }
-                            
-                              .formbold-form-wrapper {
-                                margin: 0 auto;
-                                max-width: 570px;
-                                width: 100%;
-                                background: white;
-                                padding: 40px;
-                              }
-                            
-                              .formbold-img {
-                                display: block;
-                                margin: 0 auto 45px;
-                              }
-                            
-                              .formbold-input-wrapp > div {
-                                display: flex;
-                                gap: 20px;
-                              }
-                            
-                              .formbold-input-flex {
-                                display: flex;
-                                gap: 20px;
-                                margin-bottom: 15px;
-                              }
-                              .formbold-input-flex > div {
-                                width: 50%;
-                              }
-                              .formbold-form-input {
-                                width: 100%;
-                                padding: 13px 22px;
-                                border-radius: 5px;
-                                border: 1px solid #dde3ec;
-                                background: #ffffff;
-                                font-weight: 500;
-                                font-size: 16px;
-                                color: #536387;
-                                outline: none;
-                                resize: none;
-                              }
-                              .formbold-form-input::placeholder,
-                              select.formbold-form-input,
-                              .formbold-form-input[type='date']::-webkit-datetime-edit-text,
-                              .formbold-form-input[type='date']::-webkit-datetime-edit-month-field,
-                              .formbold-form-input[type='date']::-webkit-datetime-edit-day-field,
-                              .formbold-form-input[type='date']::-webkit-datetime-edit-year-field {
-                                color: rgba(83, 99, 135, 0.5);
-                              }
-                            
-                              .formbold-form-input:focus {
-                                border-color: #6a64f1;
-                                box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-                              }
-                              .formbold-form-label {
-                                color: #536387;
-                                font-size: 14px;
-                                line-height: 24px;
-                                display: block;
-                                margin-bottom: 10px;
-                              }
-                            
-                              .formbold-checkbox-label {
-                                display: flex;
-                                cursor: pointer;
-                                user-select: none;
-                                font-size: 16px;
-                                line-height: 24px;
-                                color: #536387;
-                              }
-                              .formbold-checkbox-label a {
-                                margin-left: 5px;
-                                color: #6a64f1;
-                              }
-                              .formbold-input-checkbox {
-                                position: absolute;
-                                width: 1px;
-                                height: 1px;
-                                padding: 0;
-                                margin: -1px;
-                                overflow: hidden;
-                                clip: rect(0, 0, 0, 0);
-                                white-space: nowrap;
-                                border-width: 0;
-                              }
-                              .formbold-checkbox-inner {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                width: 20px;
-                                height: 20px;
-                                margin-right: 16px;
-                                margin-top: 2px;
-                                border: 0.7px solid #dde3ec;
-                                border-radius: 3px;
-                              }
-                            
-                              .formbold-form-file {
-                                padding: 12px;
-                                font-size: 14px;
-                                line-height: 24px;
-                                color: rgba(83, 99, 135, 0.5);
-                              }
-                              .formbold-form-file::-webkit-file-upload-button {
-                                display: none;
-                              }
-                              .formbold-form-file:before {
-                                content: 'Upload';
-                                display: inline-block;
-                                background: #EEEEEE;
-                                border: 0.5px solid #E7E7E7;
-                                border-radius: 3px;
-                                padding: 3px 12px;
-                                outline: none;
-                                white-space: nowrap;
-                                -webkit-user-select: none;
-                                cursor: pointer;
-                                color: #637381;
-                                font-weight: 500;
-                                font-size: 12px;
-                                line-height: 16px;
-                                margin-right: 10px;
-                              }
-                            
-                              .formbold-btn {
-                                font-size: 16px;
-                                border-radius: 5px;
-                                padding: 14px 25px;
-                                border: none;
-                                font-weight: 500;
-                                background-color: #6a64f1;
-                                color: white;
-                                cursor: pointer;
-                                margin-top: 25px;
-                              }
-                              .formbold-btn:hover {
-                                box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-                              }
-                            
-                              .formbold-w-45 {
-                                width: 45%;
-                              }
+                                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+                                * {
+                                    margin: 0;
+                                    padding: 0;
+                                    box-sizing: border-box;
+                                }
+
+                                body {
+                                    font-family: 'Inter', sans-serif;
+                                }
+
+                                .formbold-mb-3 {
+                                    margin-bottom: 15px;
+                                }
+
+                                .formbold-relative {
+                                    position: relative;
+                                }
+
+                                .formbold-opacity-0 {
+                                    opacity: 0;
+                                }
+
+                                .formbold-stroke-current {
+                                    stroke: #ffffff;
+                                    z-index: 999;
+                                }
+
+                                #supportCheckbox:checked~div span {
+                                    opacity: 1;
+                                }
+
+                                #supportCheckbox:checked~div {
+                                    background: #6a64f1;
+                                    border-color: #6a64f1;
+                                }
+
+                                .formbold-main-wrapper {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    padding: 48px;
+                                }
+
+                                .formbold-form-wrapper {
+                                    margin: 0 auto;
+                                    max-width: 570px;
+                                    width: 100%;
+                                    background: white;
+                                    padding: 40px;
+                                }
+
+                                .formbold-img {
+                                    display: block;
+                                    margin: 0 auto 45px;
+                                }
+
+                                .formbold-input-wrapp>div {
+                                    display: flex;
+                                    gap: 20px;
+                                }
+
+                                .formbold-input-flex {
+                                    display: flex;
+                                    gap: 20px;
+                                    margin-bottom: 15px;
+                                }
+
+                                .formbold-input-flex>div {
+                                    width: 50%;
+                                }
+
+                                .formbold-form-input {
+                                    width: 100%;
+                                    padding: 13px 22px;
+                                    border-radius: 5px;
+                                    border: 1px solid #dde3ec;
+                                    background: #ffffff;
+                                    font-weight: 500;
+                                    font-size: 16px;
+                                    color: #536387;
+                                    outline: none;
+                                    resize: none;
+                                }
+
+                                .formbold-form-input::placeholder,
+                                select.formbold-form-input,
+                                .formbold-form-input[type='date']::-webkit-datetime-edit-text,
+                                .formbold-form-input[type='date']::-webkit-datetime-edit-month-field,
+                                .formbold-form-input[type='date']::-webkit-datetime-edit-day-field,
+                                .formbold-form-input[type='date']::-webkit-datetime-edit-year-field {
+                                    color: rgba(83, 99, 135, 0.5);
+                                }
+
+                                .formbold-form-input:focus {
+                                    border-color: #6a64f1;
+                                    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+                                }
+
+                                .formbold-form-label {
+                                    color: #536387;
+                                    font-size: 14px;
+                                    line-height: 24px;
+                                    display: block;
+                                    margin-bottom: 10px;
+                                }
+
+                                .formbold-checkbox-label {
+                                    display: flex;
+                                    cursor: pointer;
+                                    user-select: none;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    color: #536387;
+                                }
+
+                                .formbold-checkbox-label a {
+                                    margin-left: 5px;
+                                    color: #6a64f1;
+                                }
+
+                                .formbold-input-checkbox {
+                                    position: absolute;
+                                    width: 1px;
+                                    height: 1px;
+                                    padding: 0;
+                                    margin: -1px;
+                                    overflow: hidden;
+                                    clip: rect(0, 0, 0, 0);
+                                    white-space: nowrap;
+                                    border-width: 0;
+                                }
+
+                                .formbold-checkbox-inner {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 20px;
+                                    height: 20px;
+                                    margin-right: 16px;
+                                    margin-top: 2px;
+                                    border: 0.7px solid #dde3ec;
+                                    border-radius: 3px;
+                                }
+
+                                .formbold-form-file {
+                                    padding: 12px;
+                                    font-size: 14px;
+                                    line-height: 24px;
+                                    color: rgba(83, 99, 135, 0.5);
+                                }
+
+                                .formbold-form-file::-webkit-file-upload-button {
+                                    display: none;
+                                }
+
+                                .formbold-form-file:before {
+                                    content: 'Upload';
+                                    display: inline-block;
+                                    background: #EEEEEE;
+                                    border: 0.5px solid #E7E7E7;
+                                    border-radius: 3px;
+                                    padding: 3px 12px;
+                                    outline: none;
+                                    white-space: nowrap;
+                                    -webkit-user-select: none;
+                                    cursor: pointer;
+                                    color: #637381;
+                                    font-weight: 500;
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    margin-right: 10px;
+                                }
+
+                                .formbold-btn {
+                                    font-size: 16px;
+                                    border-radius: 5px;
+                                    padding: 14px 25px;
+                                    border: none;
+                                    font-weight: 500;
+                                    background-color: #6a64f1;
+                                    color: white;
+                                    cursor: pointer;
+                                    margin-top: 25px;
+                                }
+
+                                .formbold-btn:hover {
+                                    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+                                }
+
+                                .formbold-w-45 {
+                                    width: 45%;
+                                }
                             </style>
-                      </div>
-            
-                           
-                              
-                      <!-- Area Chart -->
-                      <div class="col-xl-8 col-lg-7">
-                          <div class="card shadow mb-4">
-                              <!-- Card Header - Dropdown -->
-                              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                  <h6 class="m-0 font-weight-bold text-primary">DATA KENDARAAN</h6>
-                              </div>
-                              <!-- Card Body -->
-                              <div class="card-body">
-                                <div class="table-responsive">
-                                  <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                      <div class="mb-2">
-                                          <div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div>
-                                      </div>
-                                  <div class="col-sm-12 col-md-6">
-                                      <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm col" placeholder="" aria-controls="dataTable"></label></div></div></div>
-                                      <div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                      <thead>
-                                          <tr role="row">
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 76.2px;">ID</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 105.2px;">Tipe Sewa</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59.2px;">Tipe Kendaraan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30.2px;">Harga Sewa</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30.2px;">Jumlah Unit</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Spesifikasi</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                      <tr class="odd">  
-                                      </tr></tbody>
-                                  </table>
-                              
-                              </div>
-                              </div>
-                          </div>
-                      </div> 
-                  </div>
-                          </div>
-      </div>
-                <!-- /.container-fluid -->
+                        </div>
+
+
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">DATA KENDARAAN</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                            <div class="mb-2">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="dataTables_length" id="dataTable_length"></div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div id="dataTable_filter" class="dataTables_filter">
+                                                        <label>Search:<input type="search"
+                                                                class="form-control form-control-sm col"
+                                                                placeholder="" aria-controls="dataTable"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table table-bordered dataTable" id="dataTable"
+                                                        width="100%" cellspacing="0" role="grid"
+                                                        aria-describedby="dataTable_info" style="width: 100%;">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting sorting_asc" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1" aria-sort="ascending"
+                                                                    aria-label="Name: activate to sort column descending"
+                                                                    style="width: 76.2px;">ID</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Position: activate to sort column ascending"
+                                                                    style="width: 105.2px;">Tipe Sewa</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Office: activate to sort column ascending"
+                                                                    style="width: 59.2px;">Tipe Kendaraan</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Age: activate to sort column ascending"
+                                                                    style="width: 30.2px;">Harga Sewa</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Age: activate to sort column ascending"
+                                                                    style="width: 30.2px;">Plat Nomer</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Start date: activate to sort column ascending"
+                                                                    style="width: 68.2px;">Spesifikasi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($dataKendaraan as $item)
+                                                                <tr class="odd">
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ $item->tipe_sewa }}</td>
+                                                                    <td>{{ $item->tipe_kendaraan }}</td>
+                                                                    <td>{{ $item->harga_sewa }}</td>
+                                                                    <td>{{ $item->plat_nomor }}</td>
+                                                                    <td>{{ $item->spesifikasi }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container-fluid -->
+                    </div>
+                    <!-- End of Main Content -->
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Your Website 2021</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
+
             </div>
-            <!-- End of Main Content -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

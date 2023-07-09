@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\KendaraanController;
+use App\Http\Controllers\Admin\SewaController as AdminSewaController;
+use App\Http\Controllers\Admin\ValidasiController;
+use App\Http\Controllers\Customer\SewaController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SewaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,29 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sewaMotor', [SewaController::class,'index'])->name('sewaMotor');
+
+Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('sewaMotor');
 Route::get('/create', [SewaController::class,'create'])->name('createSewa');
 Route::post('/store', [SewaController::class,'store'])->name('storeSewa');
 
-Route::get('/daftarPenyewa', function () {
-    return view('daftarPenyewa');
-});
+Route::get('/daftarPenyewa', [AdminSewaController::class, 'daftarPenyewa']);
 
-Route::get('/statusSewa', function () {
-    return view('statusSewa');
-});
+Route::get('/validasiKtp', [ValidasiController::class, 'tampilDataKTP']);
 
-Route::get('/validasiKtp', function () {
-    return view('validasiKtp');
-});
-
-Route::get('/member_adm', function () {
-    return view('validasiMember');
-});
+Route::get('/validasiMember', [ValidasiController::class, 'tampilDataMember']);
 
 Route::get('/statusSewaCst', function () {
     return view('statusSewaCst');
@@ -52,13 +46,11 @@ Route::get('/membership', function () {
 });
 
 
-Route::get('/inputKtp', function () {
-    return view('inputKtp');
-});
+Route::get('/inputKtp', [ProfileController::class, 'tampilForm'])->name('tampilFormKTP');
+Route::put('/inputKtp', [ProfileController::class, 'inputKTP'])->name('postKTP');
 
-Route::get('/inputDataMotor', function () {
-    return view('inputDataMotor');
-});
+Route::get('/inputDataMotor', [KendaraanController::class, 'index'])->name('tampilFormDataMotor');
+Route::post('/inputDataMotor', [KendaraanController::class, 'store'])->name('postDataMotor');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

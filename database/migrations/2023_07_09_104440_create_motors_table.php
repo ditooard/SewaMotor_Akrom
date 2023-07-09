@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sewa', function (Blueprint $table) {
+        Schema::create('motors', function (Blueprint $table) {
             $table->id();
-            $table->date('mulai_sewa');
-            $table->date('selesai_sewa');
-            $table->integer('jumlah_unit');
-            $table->string('keperluan_Sewa');
+            $table->enum('tipe_sewa', ['Premium', 'Spesial']);
+            $table->string('tipe_kendaraan');
+            $table->integer('harga_sewa')->length(255);
+            $table->string('plat_nomor');
+            $table->text('spesifikasi');
+            $table->text('foto_kendaraan');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sewa');
+        Schema::dropIfExists('motors');
     }
 };

@@ -62,21 +62,22 @@
             <!-- end of mobile menu toggle button -->
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav ml-auto"> 
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#header">HOME<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#features">INFO KENDARAAN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#details">HARGA SEWA </a>
-                    </li>
-
-                    <!-- Dropdown Menu -->          
                     <li class="nav-item dropdown">
                         <a class="nav-link page-scroll" href="#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">TUTORIAL PENYEWAAN</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#info">INFO KENDARAAN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#pricing">HARGA SEWA </a>
+                    </li>
+
+                    <!-- Dropdown Menu -->          
+                    
                     <!-- end of dropdown menu -->
                 </ul>
                 <span class="nav-item">
@@ -157,63 +158,89 @@
     </div> <!-- end of slider-1 -->
     <!-- end of customers -->
 
+        <!-- Video -->
+        <div id="video" class="basic-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+    
+                        <!-- Video Preview -->
+                        <div class="image-container">
+                            <div class="video-wrapper">
+                                <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                    <img class="img-fluid" src="images/video-image.png" alt="alternative">
+                                    <span class="video-play-button">
+                                        <span></span>
+                                    </span>
+                                </a>
+                            </div> <!-- end of video-wrapper -->
+                        </div> <!-- end of image-container -->
+                        <!-- end of video preview -->
+    
+                        <div class="p-heading">What better way to show off Tivo marketing automation saas app than presenting you some great situations of each module and tool available to users in a video</div>        
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of basic-2 -->
+        <!-- end of video -->
 
     <!-- Description -->
-    <div class="cards-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="above-heading">DESCRIPTION</div>
-                    <h2 class="h2-heading">Marketing Automation Will Bring More Qualified Leads</h2>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/description-1.png" alt="alternative">
+        <div class="cards-2"  id="info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12"></div>
+                        <h2 class="h2-heading">Marketing Automation Will Bring More Qualified Leads</h2>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <div class="row">
+                    <div class="col-lg-12">
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/description-1.png" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Lists Builder</h4>
+                                <p>It's very easy to start creating email lists for your marketing actions. Just create your Tivo account</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Lists Builder</h4>
-                            <p>It's very easy to start creating email lists for your marketing actions. Just create your Tivo account</p>
+                        <!-- end of card -->
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/description-2.png" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Campaign Tracker</h4>
+                                <p>Campaigns is a feature we've developed since the beginning because it's at the core of Tivo's functionalities</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/description-2.png" alt="alternative">
+                        <!-- end of card -->
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/description-3.png" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Analytics Tool</h4>
+                                <p>Tivo collects customer data in order to help you analyse different situations and take required action</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Campaign Tracker</h4>
-                            <p>Campaigns is a feature we've developed since the beginning because it's at the core of Tivo's functionalities</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-image">
-                            <img class="img-fluid" src="images/description-3.png" alt="alternative">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Analytics Tool</h4>
-                            <p>Tivo collects customer data in order to help you analyse different situations and take required action</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-1 -->
+                        <!-- end of card -->
+    
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+    </div>
+    
+    <!-- end of cards-1 -->
     <!-- end of description -->
 
 
-    <!-- Features -->
+    {{-- <!-- Features -->
     <div id="features" class="tabs">
         <div class="container">
             <div class="row">
@@ -222,7 +249,8 @@
                     <h2 class="h2-heading">Marketing Automation</h2>
                     <p class="p-heading">Take your business strategy to the next level and automatize your marketing tasks to save time for product development. Tivo can provide results in less than 2 weeks</p>
                 </div> <!-- end of col -->
-            </div> <!-- end of row -->
+            </div> 
+            <!-- end of row -->
             <div class="row">
                 <div class="col-lg-12">
 
@@ -346,12 +374,12 @@
                     <!-- end of tabs content -->
 
                 </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
+            </div> 
+            <!-- end of row -->
+        </div>
+        <!-- end of container -->
     </div> <!-- end of tabs -->
-    <!-- end of features -->
-
-
+    <!-- end of features --> --}}
     <!-- Details Lightboxes -->
     <!-- Details Lightbox 1 -->
 	<div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
@@ -481,7 +509,7 @@
     <!-- end of details lightboxes -->
 
 
-    <!-- Details -->
+    {{-- <!-- Details -->
     <div id="details" class="basic-1">
         <div class="container">
             <div class="row">
@@ -510,34 +538,10 @@
             </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of basic-1 -->
-    <!-- end of details -->
+    <!-- end of details --> --}}
 
 
-    <!-- Video -->
-    <div id="video" class="basic-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
 
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                <img class="img-fluid" src="images/video-image.png" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <!-- end of video preview -->
-
-                    <div class="p-heading">What better way to show off Tivo marketing automation saas app than presenting you some great situations of each module and tool available to users in a video</div>        
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-2 -->
-    <!-- end of video -->
 
 
     <!-- Pricing -->
@@ -650,7 +654,8 @@
 
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
-        </div> <!-- end of container -->
+        </div> 
+        <!-- end of container -->
     </div> <!-- end of cards-2 -->
     <!-- end of pricing -->
 
