@@ -60,7 +60,8 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-    public function tampilForm(){
+    public function tampilForm()
+    {
         $dataUser = User::where('id', Auth::user()->id)->first();
         return view('inputKtp', compact('dataUser'));
     }
@@ -77,29 +78,30 @@ class ProfileController extends Controller
         $image = $request->file('foto_ktp');
         $image_name = $request->name . "." . $request->file('foto_ktp')->extension();
         $image->move(public_path('img'), $image_name);
-        
+
         $userKTP = Customer::where('id_user', Auth::user()->id)->first();
         $userKTP->update(
             [
                 'nik' => $request->nik,
                 'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-                'alamat'=> $request->alamat,
-                'rt_rw'=> $request->rt_rw,
-                'kelurahan'=>$request->kelurahan,
-                'kecamatan'=>$request->kecamatan,
-                'pekerjaan'=>$request->pekerjaan,
-                'kewarganegaraan'=>$request->kewarganegaraan,
-                'foto_ktp'=>$image_name
-                ]
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'alamat' => $request->alamat,
+                'rt_rw' => $request->rt_rw,
+                'kelurahan' => $request->kelurahan,
+                'kecamatan' => $request->kecamatan,
+                'pekerjaan' => $request->pekerjaan,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'foto_ktp' => $image_name,
+                'membership' => 'Non_Member'
+            ]
         );
         $dataUser = User::where('id', Auth::user()->id)->first();
         $dataUser->update([
-            'name' => $request->name 
+            'name' => $request->name
         ]);
-        if($validasi == false){
+        if ($validasi == false) {
             return redirect()->back();
-        }elseif($validasi == true){
+        } elseif ($validasi == true) {
             return redirect('dashboard');
         }
     }

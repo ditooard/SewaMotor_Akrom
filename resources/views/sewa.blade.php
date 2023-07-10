@@ -64,17 +64,21 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @elseif (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <!-- Illustrations -->
                     <div class="row">
                         <!-- Pie Chart -->
@@ -92,46 +96,42 @@
 
                                     <form action="/store" method="POST">
                                         @csrf
-                                        <div class="formbold-mb-3 mt-0">
-                                            <label class="formbold-form-label">Tipe Sewa</label>
-                                            <select class="formbold-form-input" name="tipe_sewa" id="occupation">
-                                                <option selected disabled>Input Tipe Sewa</option>
-                                                <option value="Premium">Premium</option>
-                                                <option value="Spesial">Spesial</option>
-                                            </select>
-                                        </div>
                                         <div class="formbold-mb-3">
                                             <label class="formbold-form-label">Tipe Motor</label>
                                             <select class="formbold-form-input" name="tipe_kendaraan">
-                                                <option selected disabled>Input Tipe Motor</option>
+                                                <option disabled selected>Input Tipe Motor</option>
                                                 @foreach ($dataKendaraan as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->tipe_kendaraan }}
+                                                    <option value="{{ $item->id }}"
+                                                        {{ old('tipe_kendaraan') == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->tipe_kendaraan }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
 
                                         <div class="formbold-input-wrapp formbold-mb-3">
-                                            <label for="firstname" class="formbold-form-label"> Lama Sewa </label>
+                                            <label for="mulai_sewa" class="formbold-form-label">Lama Sewa</label>
                                             <div class="formbold-mb-3">
-                                                <label for="dob" class="formbold-form-label"> Mulai</label>
-                                                <input type="date" name="mulai_sewa" id="dob"
-                                                    class="formbold-form-input" />
+                                                <label for="mulai_sewa" class="formbold-form-label">Mulai</label>
+                                                <input type="date" name="mulai_sewa" id="mulai_sewa"
+                                                    class="formbold-form-input" value="{{ old('mulai_sewa') }}" />
                                             </div>
                                             <div class="formbold-mb-3">
-                                                <label for="dob" class="formbold-form-label"> Selesai</label>
-                                                <input type="date" name="selesai_sewa" id="dob"
-                                                    class="formbold-form-input" />
+                                                <label for="selesai_sewa" class="formbold-form-label">Selesai</label>
+                                                <input type="date" name="selesai_sewa" id="selesai_sewa"
+                                                    class="formbold-form-input" value="{{ old('selesai_sewa') }}" />
                                             </div>
                                         </div>
                                         <div class="formbold-mb-3">
-                                            <label for="email" class="formbold-form-label">Keperluan Sewa</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keperluan_sewa"></textarea>
+                                            <label for="keperluan_sewa" class="formbold-form-label">Keperluan
+                                                Sewa</label>
+                                            <textarea class="form-control" id="keperluan_sewa" rows="3" name="keperluan_sewa">{{ old('keperluan_sewa') }}</textarea>
                                         </div>
                                         <div class="text-center">
                                             <button class="formbold-btn">Submit</button>
                                         </div>
                                     </form>
+
 
                                 </div>
                             </div>

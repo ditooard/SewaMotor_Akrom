@@ -49,8 +49,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -67,31 +67,82 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                            <!-- Illustrations -->
-                            <div class="container-fluid">
-                                <!-- DataTales Example -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h4 class="m-0 font-weight-bold text-primary">RIWAYAT SEWA</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="mb-4"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm col" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                                <thead>
-                                                    <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 76.2px;">No</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 105.2px;">Jenis Sewa</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59.2px;">Jenis Kendaraan</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30.2px;">Lama Sewa</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Tanggal Sewa</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Tanggal Kembali</th></tr>
-                                                </thead></tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="odd">
-                                                    
-                                                </tr></tbody>
-                                            </table>
-                                        
+                    <!-- Illustrations -->
+                    <div class="container-fluid">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h4 class="m-0 font-weight-bold text-primary">RIWAYAT SEWA</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="mb-4">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="dataTable_length"></div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div id="dataTable_filter" class="dataTables_filter">
+                                                    <label>Search:<input type="search"
+                                                            class="form-control form-control-sm col" placeholder=""
+                                                            aria-controls="dataTable"></label></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered dataTable" id="dataTable"
+                                                    width="100%" cellspacing="0" role="grid"
+                                                    aria-describedby="dataTable_info" style="width: 100%;">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting sorting_asc" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1" colspan="1"
+                                                                aria-sort="ascending"
+                                                                aria-label="Name: activate to sort column descending"
+                                                                style="width: 76.2px;">No</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Position: activate to sort column ascending"
+                                                                style="width: 105.2px;">Jenis Sewa</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Office: activate to sort column ascending"
+                                                                style="width: 59.2px;">Jenis Kendaraan</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 30.2px;">Lama Sewa</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Tanggal Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Tanggal Kembali</th>
+                                                        </tr>
+                                                    </thead>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{-- @foreach ($sewa as $item)
+                                                            <tr class="odd">
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach --}}
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('id_motor')->references('id')->on('motors');
             $table->unsignedBigInteger('id_customer')->after('id_motor');
             $table->foreign('id_customer')->references('id')->on('customers');
+            $table->enum('status_sewa',['Ditolak', 'Booking', 'Sewa', 'Kembali']);
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->dropForeign('sewa_id_customer_foreign');
             $table->dropColumn('id_customer');
             $table->dropColumn('id_motor');
+            $table->dropColumn('status_sewa');
         });
     }
 };

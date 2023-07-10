@@ -64,17 +64,21 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul style="list-style: none">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @elseif (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <!-- Illustrations -->
                     <div class="row">
                         <!-- Pie Chart -->
@@ -89,7 +93,8 @@
                                 <div class="card-body">
                                 </div>
                                 <div class="formbold-main-wrapper">
-                                    <form action="{{ route('postDataMotor') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('postDataMotor') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="formbold-mb-3">
                                             <label for="upload" class="formbold-form-label">
@@ -102,39 +107,44 @@
                                         <div class="formbold-mb-3">
                                             <label class="formbold-form-label">Tipe Sewa</label>
                                             <select class="formbold-form-input" name="tipe_sewa" id="occupation">
-                                                <option value="Premium">Premium</option>
-                                                <option value="Spesial">Spesial</option>
+                                                <option value="Premium"
+                                                    {{ old('tipe_sewa') == 'Premium' ? 'selected' : '' }}>Premium
+                                                </option>
+                                                <option value="Spesial"
+                                                    {{ old('tipe_sewa') == 'Spesial' ? 'selected' : '' }}>Spesial
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div class="formbold-mb-3">
-                                            <label for="age" class="formbold-form-label"> Tipe Kendaraan </label>
+                                            <label for="age" class="formbold-form-label">Tipe Kendaraan</label>
                                             <input type="text" name="tipe_kendaraan" id="age"
-                                                class="formbold-form-input" />
+                                                class="formbold-form-input" value="{{ old('tipe_kendaraan') }}" />
                                         </div>
 
                                         <div class="formbold-mb-3">
-                                            <label for="age" class="formbold-form-label"> Harga Sewa </label>
+                                            <label for="age" class="formbold-form-label">Harga Sewa</label>
                                             <input type="text" name="harga_sewa" id="age"
-                                                class="formbold-form-input" value="" />
+                                                class="formbold-form-input" value="{{ old('harga_sewa') }}" />
                                         </div>
 
                                         <div class="formbold-mb-3">
-                                            <label for="age" class="formbold-form-label"> Plat Nomor </label>
+                                            <label for="age" class="formbold-form-label">Plat Nomor</label>
                                             <input type="text" name="plat_nomor" id="age"
-                                                class="formbold-form-input" value="" />
+                                                class="formbold-form-input" value="{{ old('plat_nomor') }}" />
                                         </div>
 
                                         <div class="formbold-mb-3">
                                             <label for="email" class="formbold-form-label">Spesifikasi
                                                 Kendaraan</label>
-                                            <textarea class="form-control" name="spesifikasi" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" name="spesifikasi" id="exampleFormControlTextarea1" rows="3">{{ old('spesifikasi') }}</textarea>
                                         </div>
                                         <div class="text-center">
                                             <button class="formbold-btn">Submit</button>
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                             <style>
                                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -397,16 +407,16 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                          @foreach ($dataKendaraan as $item)
-                                                            <tr class="odd">
-                                                              <td>{{ $loop->iteration }}</td>
-                                                              <td>{{ $item->tipe_sewa }}</td>
-                                                              <td>{{ $item->tipe_kendaraan }}</td>
-                                                              <td>{{ $item->harga_sewa }}</td>
-                                                              <td>{{ $item->plat_nomor }}</td>
-                                                              <td>{{ $item->spesifikasi }}</td>
-                                                            </tr>
-                                                          @endforeach
+                                                            @foreach ($dataKendaraan as $item)
+                                                                <tr class="odd">
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ $item->tipe_sewa }}</td>
+                                                                    <td>{{ $item->tipe_kendaraan }}</td>
+                                                                    <td>{{ $item->harga_sewa }}</td>
+                                                                    <td>{{ $item->plat_nomor }}</td>
+                                                                    <td>{{ $item->spesifikasi }}</td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
 

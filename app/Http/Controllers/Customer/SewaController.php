@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Motor;
 use App\Models\Sewa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SewaController extends Controller
 {
@@ -16,8 +18,8 @@ class SewaController extends Controller
      */
     public function index()
     {
-        $sewa = Sewa::all();
-        return view('statusSewa', compact('sewa'));
+        $sewa = Sewa::join('customers', 'sewa.id_customer', '=', 'customers.id')->get();
+        return view('statusSewaCst', compact('sewa'));
     }
 
     /**
@@ -40,12 +42,26 @@ class SewaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipe_sewa' => 'required',
-            'id_motor' => 'required',
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date',
-            'keperluan_Sewa' => 'required'
+            'tipe_kendaraan' => 'required',
+            'mulai_sewa' => 'required',
+            'selesai_sewa' => 'required',
+            'keperluan_sewa' => 'required'
+        ],[
+            'tipe_kendaraan.required' => 'Pilih tipe motor terlebih dahulu',
+            'mulai_sewa.required' => 'Masukkan tanggal peminjaman terlebih dahulu',
+            'selesai_sewa.required' => 'Masukkan tanggal selesai terlebih dahulu',
+            'keperluan_sewa.required' => 'Masukkan alasan peminjaman terlebih dahulu',
         ]);
+        $getIDByLog = Customer::where('id_user', '=', Auth::user()->id)->first();
+            Sewa::create([
+                'id_motor' => $request->tipe_kendaraan,
+                'id_customer' => $getIDByLog->id,
+                'mulai_sewa' => $request->mulai_sewa,
+                'selesai_sewa'=>$request->selesai_sewa,
+                'keperluan_Sewa' => $request->keperluan_sewa,
+                'status_sewa' => 'Booking'
+            ]);
+        return redirect()->back()->with('success', 'Berhasil melakukan penyewaan');
     }
 
     /**

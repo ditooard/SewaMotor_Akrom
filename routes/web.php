@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\KendaraanController;
 use App\Http\Controllers\Admin\SewaController as AdminSewaController;
 use App\Http\Controllers\Admin\ValidasiController;
+use App\Http\Controllers\Customer\MemberController;
 use App\Http\Controllers\Customer\SewaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,7 @@ Route::get('/', function () {
 
 
 Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('sewaMotor');
-Route::get('/create', [SewaController::class,'create'])->name('createSewa');
-Route::post('/store', [SewaController::class,'store'])->name('storeSewa');
+
 
 Route::get('/daftarPenyewa', [AdminSewaController::class, 'daftarPenyewa']);
 
@@ -33,17 +33,15 @@ Route::get('/validasiKtp', [ValidasiController::class, 'tampilDataKTP']);
 
 Route::get('/validasiMember', [ValidasiController::class, 'tampilDataMember']);
 
-Route::get('/statusSewaCst', function () {
-    return view('statusSewaCst');
-});
+Route::get('/statusSewaCst', [SewaController::class, 'index']);
+Route::get('/create', [SewaController::class, 'create'])->name('createSewa');
+Route::post('/store', [SewaController::class, 'store'])->name('storeSewa');
 
 Route::get('/riwayatSewa', function () {
     return view('riwayatSewa');
 });
 
-Route::get('/membership', function () {
-    return view('membership');
-});
+Route::get('/membership', [MemberController::class, 'index']);
 
 
 Route::get('/inputKtp', [ProfileController::class, 'tampilForm'])->name('tampilFormKTP');

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('pekerjaan')->nullable();
             $table->string('kewarganegaraan')->nullable();
             $table->text('foto_ktp')->nullable();
-            $table->enum('membership', ['Member', 'Non_Member'])->nullable();
+            $table->enum('membership', ['Member', 'Non_Member','Proses'])->nullable();
         });
     }
 

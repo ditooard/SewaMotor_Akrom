@@ -14,15 +14,15 @@ class Sewa extends Model
     protected $fillable = [
         'id_motor',
         'id_customer',
-        'tipe_sewa',
-        'tipe_motor',
         'mulai_sewa',
         'selesai_sewa',
-        'jumlah_unit',
-        'keperluan_sewa',
+        'keperluan_Sewa',
     ];
     public function penyewa(): HasOne
     {
         return $this->hasOne(Customer::class, 'id', 'id_customer');
+    }
+    public function barang_sewa(): HasOne{
+        return $this->hasOne(Motor::class, 'id', 'id_motor');
     }
 }

@@ -43,7 +43,7 @@ class KendaraanController extends Controller
             'harga_sewa' => 'required',
             'plat_nomor' => 'required|unique:motors,plat_nomor',
             'spesifikasi' => 'required',
-            'foto_kendaraan' => 'image|mimes:jpeg,jpg,png'
+            'foto_kendaraan' => 'required|image|mimes:jpeg,jpg,png'
         ]);
 
         $image = $request->file('foto_kendaraan');
