@@ -49,8 +49,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -67,48 +67,129 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                            <!-- Illustrations -->
-                            <div class="container-fluid">
-                                <!-- DataTales Example -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h4 class="m-0 font-weight-bold text-primary">STATUS SEWA</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="mb-2"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm col" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12">
-                                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 10px;">ID</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 70px;">Penyewa</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 80.2px;">Tipe Sewa</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59.2px;">Tipe Kendaraan</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30.2px;">Mulai Sewa</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Selesai Sewa</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Jumlah Unit</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">Keperluan Sewa</th>
-                                                    </tr>
-                                                    @foreach ($dataSewa as $s)
-                                                    <tr role="row">
-                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 76.2px;">{{$loop->iteration}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 105.2px;">{{$s->penyewa->pengguna->name}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 105.2px;">{{$s->tipe_sewa}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59.2px;">{{$s->tipe_motor}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 30.2px;">{{$s->mulai_sewa}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">{{$s->selesai_sewa}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">{{$s->jumlah_unit}}</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68.2px;">{{$s->keperluan_Sewa}}</th>
-                                                    </tr>
-                                                    @endforeach
-                                                </thead>
+                    <!-- Illustrations -->
+                    <div class="container-fluid">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h4 class="m-0 font-weight-bold text-primary">STATUS SEWA</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="mb-2">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="dataTable_length"></div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div id="dataTable_filter" class="dataTables_filter">
+                                                    <label>Search:<input type="search"
+                                                            class="form-control form-control-sm col" placeholder=""
+                                                            aria-controls="dataTable"></label></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered dataTable" id="dataTable"
+                                                    width="100%" cellspacing="0" role="grid"
+                                                    aria-describedby="dataTable_info" style="width: 100%;">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting sorting_asc" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1" colspan="1"
+                                                                aria-sort="ascending"
+                                                                aria-label="Name: activate to sort column descending"
+                                                                style="width: 10px;">ID</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Position: activate to sort column ascending"
+                                                                style="width: 70px;">Penyewa</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Position: activate to sort column ascending"
+                                                                style="width: 80.2px;">Tipe Sewa</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Office: activate to sort column ascending"
+                                                                style="width: 59.2px;">Tipe Kendaraan</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                                rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 30.2px;">Mulai Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Selesai Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Keperluan Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 50.2px;">Aksi</th>
+                                                        </tr>
+                                                        @foreach ($dataSewa as $s)
+                                                            <tr role="row">
+                                                                <th class="sorting sorting_asc" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1" aria-sort="ascending"
+                                                                    aria-label="Name: activate to sort column descending"
+                                                                    style="width: 76.2px;">{{ $loop->iteration }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Position: activate to sort column ascending"
+                                                                    style="width: 105.2px;">
+                                                                    {{ $s->penyewa->pengguna->name }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Position: activate to sort column ascending"
+                                                                    style="width: 105.2px;">
+                                                                    {{ $s->barang_sewa->tipe_sewa }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Office: activate to sort column ascending"
+                                                                    style="width: 59.2px;">
+                                                                    {{ $s->barang_sewa->tipe_kendaraan }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Age: activate to sort column ascending"
+                                                                    style="width: 30.2px;">{{ $s->mulai_sewa }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Start date: activate to sort column ascending"
+                                                                    style="width: 68.2px;">{{ $s->selesai_sewa }}</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Start date: activate to sort column ascending"
+                                                                    style="width: 68.2px;">{{ $s->keperluan_Sewa }}
+                                                                </th>
+                                                                <th class="sorting" tabindex="0"
+                                                                    aria-controls="dataTable" rowspan="1"
+                                                                    colspan="1"
+                                                                    aria-label="Start date: activate to sort column ascending"
+                                                                    style="width: 68.2px;">
 
-                                            </table>
-                                        
+                                                                </th>
+                                                            </tr>
+                                                        @endforeach
+                                                    </thead>
+
+                                                </table>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>

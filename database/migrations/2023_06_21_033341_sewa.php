@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->date('mulai_sewa');
             $table->date('selesai_sewa');
-            $table->integer('jumlah_unit');
             $table->string('keperluan_Sewa');
         });
     }

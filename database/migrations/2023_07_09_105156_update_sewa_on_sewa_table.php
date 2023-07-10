@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_customer')->after('id_motor');
             $table->foreign('id_customer')->references('id')->on('customers');
             $table->enum('status_sewa',['Ditolak', 'Booking', 'Sewa', 'Kembali']);
+            $table->date('tanggal_kembali')->nullable();
         });
     }
 
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->dropColumn('id_customer');
             $table->dropColumn('id_motor');
             $table->dropColumn('status_sewa');
+            $table->dropColumn('tanggal_kembali');
         });
     }
 };
