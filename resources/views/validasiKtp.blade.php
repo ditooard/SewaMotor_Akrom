@@ -111,7 +111,7 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
-                                                                style="width: 30.2px;">Aksi</th>
+                                                                style="width: 30.2px;">Validasi</th>
                                                         </tr>
                                                     </thead>
                                                     </tr>
@@ -122,9 +122,78 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $item->pengguna->name }}</td>
                                                                 <td>{{ $item->pengguna->email }}</td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <a href="#" class="btn btn-info btn-circle" data-toggle="modal" data-target="#myModal">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </a>
+                                                                    <a href="#" class="btn btn-success btn-circle">
+                                                                    <i class="fas fa-check"></i>
+                                                                    </a>
+                                                                    <a href="#" class="btn btn-warning btn-circle" >
+                                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                                    </a>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
+                                                        <div id="myModal" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+                                                                <!-- konten modal-->
+                                                                <div class="modal-content">
+                                                                    <!-- heading modal -->
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <!-- body modal -->
+                                                                    <div class="modal-body">
+                                                                        <form>
+                                                                            <div class="text-center">
+                                                                                <img src="cinqueterre.jpg" class="img-thumbnail" alt="Cinque Terre">
+                                                                            </div>
+                                                                           
+                                                                            <div class="form-group">
+                                                                              <label for="exampleInputEmail1">NIK</label>
+                                                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                              <label for="exampleInputPassword1">NAMA</label>
+                                                                              <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Tempat Lahir</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Tanggal Lahir</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Alamat</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">RT/RW</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Kel/Desa</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Kecamatan</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Pekerjaan</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                              <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Kewarganegaraan</label>
+                                                                                <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                              </div>
+                                                                          </form>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
                                                     </tbody>
                                                 </table>
 

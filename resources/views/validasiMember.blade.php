@@ -72,7 +72,7 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h4 class="m-0 font-weight-bold text-primary">VALIDASI KTP</h4>
+                                <h4 class="m-0 font-weight-bold text-primary">VALIDASI MEMBERSHIP</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -122,7 +122,13 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $item->pengguna->name }}</td>
                                                                 <td>{{ $item->pengguna->email }}</td>
-                                                                <td></td>
+                                                                <td><a href="#" class="btn btn-success btn-circle">
+                                                                    <i class="fas fa-check"></i>
+                                                                    </a>
+                                                                    <a href="#" class="btn btn-warning btn-circle">
+                                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                                    </a>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

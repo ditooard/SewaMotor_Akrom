@@ -127,7 +127,10 @@
                                                                 <td>{{ $item->pengguna->name }}</td>
                                                                 <td>{{ $item->alamat }}</td>
                                                                 <td>
-                                                                    {{-- Aksi UPDATE / Delete --}}
+                                                                    <a href="#" class="btn btn-danger btn-circle">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </a>
+                                                                   
                                                                 </td>
                                                             </tr>
                                                         @endforeach

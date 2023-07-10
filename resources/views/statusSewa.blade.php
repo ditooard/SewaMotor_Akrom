@@ -130,7 +130,7 @@
                                                                 aria-controls="dataTable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
-                                                                style="width: 50.2px;">Aksi</th>
+                                                                style="width: 50.2px;">Validasi</th>
                                                         </tr>
                                                         @foreach ($dataSewa as $s)
                                                             <tr role="row">
@@ -178,7 +178,12 @@
                                                                     colspan="1"
                                                                     aria-label="Start date: activate to sort column ascending"
                                                                     style="width: 68.2px;">
-
+                                                                    <a href="#" class="btn btn-success btn-circle">
+                                                                        <i class="fas fa-check"></i>
+                                                                    </a>
+                                                                    <a href="#" class="btn btn-warning btn-circle">
+                                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                                    </a>
                                                                 </th>
                                                             </tr>
                                                         @endforeach

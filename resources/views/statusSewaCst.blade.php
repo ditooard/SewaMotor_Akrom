@@ -122,6 +122,11 @@
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
                                                                 style="width: 68.2px;">Status Sewa</th>
+                                                                <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Info</th>
                                                         </tr>
                                                     </thead>
                                                     </tr>
@@ -142,6 +147,9 @@
                                                                 </td>
                                                                 <td>{{ $item->keperluan_Sewa }}</td>
                                                                 <td>{{ $item->status_sewa }}</td>
+                                                                <td>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
