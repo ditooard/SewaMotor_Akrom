@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -30,12 +31,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'level' => ['required', 'string', 'max:255'],
-        ]);
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        //     'level' => ['required', 'string', 'max:255'],
+        // ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -43,11 +44,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'level' => $request->level,
         ]);
-
+        $lastId = User::orderBy('id', 'desc')->select('id')->first();
+        Customer::create([
+            'id_user' => $lastId->id
+        ]);
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::inpKTP);
     }
 }

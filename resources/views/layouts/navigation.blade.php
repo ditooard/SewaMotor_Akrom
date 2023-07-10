@@ -89,7 +89,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="member_adm">
+        <a class="nav-link" href="validasiMember">
             <i class="fa fa-star" aria-hidden="true"></i>
             <span> Validasi Membership</span></a>
     </li>

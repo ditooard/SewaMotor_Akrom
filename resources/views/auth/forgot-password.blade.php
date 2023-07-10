@@ -65,7 +65,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                     <span class="nav-item">
-                        <a class="btn-outline-sm" href="/welcome">HOME</a>
+                        <a class="btn-outline-sm" href="/">HOME</a>
                     </span>          
                 </ul>
             </div>
