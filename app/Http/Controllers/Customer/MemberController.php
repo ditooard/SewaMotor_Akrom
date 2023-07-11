@@ -13,4 +13,11 @@ class MemberController extends Controller
         $dataUser = Customer::where('id_user', '=', Auth::user()->id)->select('membership')->first();
         return view('membership', compact('dataUser'));
     }
+    public function ajukanMember(){
+        $ajukanMemberByAuth = Customer::where('id_user', '=', Auth::user()->id)->first();
+        $ajukanMemberByAuth->update([
+            'membership' => 'Proses'
+        ]);
+        return redirect()->back();
+    }
 }

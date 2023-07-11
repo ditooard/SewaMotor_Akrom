@@ -30,8 +30,12 @@ Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('sewa
 Route::get('/daftarPenyewa', [AdminSewaController::class, 'daftarPenyewa']);
 
 Route::get('/validasiKtp', [ValidasiController::class, 'tampilDataKTP']);
+Route::put('/setujuiKTP/{id}', [ValidasiController::class, 'setujuiKTP'])->name('setujuiKTP');
+Route::put('/tolakKTP/{id}', [ValidasiController::class, 'tolakKTP'])->name('tolakKTP');
 
 Route::get('/validasiMember', [ValidasiController::class, 'tampilDataMember']);
+Route::put('/setujuiMember/{id}', [ValidasiController::class, 'setujuiMember'])->name('setujuiMember');
+Route::put('/tolakMember/{id}', [ValidasiController::class, 'tolakMember'])->name('tolakMember');
 
 Route::get('/statusSewaCst', [SewaController::class, 'index']);
 Route::get('/create', [SewaController::class, 'create'])->name('createSewa');
@@ -41,7 +45,8 @@ Route::get('/riwayatSewa', function () {
     return view('riwayatSewa');
 });
 
-Route::get('/membership', [MemberController::class, 'index']);
+Route::get('/membership', [MemberController::class, 'index'])->name('customer.membership');
+Route::post('/ajukanMember', [MemberController::class, 'ajukanMember'])->name('ajukanMember');
 
 
 Route::get('/inputKtp', [ProfileController::class, 'tampilForm'])->name('tampilFormKTP');

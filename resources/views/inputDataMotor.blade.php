@@ -102,6 +102,9 @@
                                             </label>
                                             <input type="file" name="foto_kendaraan" id="upload"
                                                 class="formbold-form-input formbold-form-file" />
+                                            <label for="upload" class="formbold-form-label">
+                                                * Batas maksimal 2MB
+                                            </label>
                                         </div>
 
                                         <div class="formbold-mb-3">
@@ -409,7 +412,7 @@
                                                                     colspan="1"
                                                                     aria-label="Start date: activate to sort column ascending"
                                                                     style="width: 68.2px;">AKSI</th>
-                                                                    
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -422,13 +425,17 @@
                                                                     <td>{{ $item->plat_nomor }}</td>
                                                                     <td>{{ $item->spesifikasi }}</td>
                                                                     <td>
-                                                                        <a href="#" class="btn btn-info btn-circle" data-toggle="modal" data-target="#myModal">
+                                                                        <a href="#"
+                                                                            class="btn btn-info btn-circle"
+                                                                            data-toggle="modal"
+                                                                            data-target="#myModal">
                                                                             <i class="fas fa-info-circle"></i>
                                                                         </a>
-                                                                        <a href="#" class="btn btn-danger btn-circle">
+                                                                        <a href="#"
+                                                                            class="btn btn-danger btn-circle">
                                                                             <i class="fas fa-trash"></i>
                                                                         </a>
-                                                                        
+
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -438,46 +445,65 @@
                                                                     <div class="modal-content">
                                                                         <!-- heading modal -->
                                                                         <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
                                                                         </div>
                                                                         <!-- body modal -->
                                                                         <div class="modal-body">
                                                                             <form>
                                                                                 <div class="text-center">
-                                                                                    <img src="cinqueterre.jpg" class="img-thumbnail" alt="Cinque Terre">
-                                                                                </div>
-                                                                               
-                                                                                <div class="form-group">
-                                                                                  <label for="exampleInputEmail1">ID</label>
-                                                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                                                    <img src="{{ asset('image_vehicle/' . $item->foto_kendaraan) }}"
+                                                                                        class="img-thumbnail"
+                                                                                        alt="Cinque Terre">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                  <label for="exampleInputPassword1">Tipe Sewa</label>
-                                                                                  <input type="password" class="form-control" id="exampleInputPassword1" >
+                                                                                    <label
+                                                                                        for="exampleInputPassword1">Tipe
+                                                                                        Sewa</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputPassword1"
+                                                                                        value="{{ $item->tipe_sewa }}">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="exampleInputPassword1">Tipe Kendaraan</label>
-                                                                                    <input type="password" class="form-control" id="exampleInputPassword1" >
-                                                                                  </div>
-                                                                                  <div class="form-group">
-                                                                                    <label for="exampleInputPassword1">Harga Sewa</label>
-                                                                                    <input type="password" class="form-control" id="exampleInputPassword1" >
-                                                                                  </div>
-                                                                                  <div class="form-group">
-                                                                                    <label for="exampleInputPassword1">Plat Nomor</label>
-                                                                                    <input type="password" class="form-control" id="exampleInputPassword1" >
-                                                                                  </div>
-                                                                                  <div class="form-group">
-                                                                                    <label for="exampleInputPassword1">Spesifikasi</label>
-                                                                                    <input type="password" class="form-control" id="exampleInputPassword1" >
-                                                                                  </div>
-                                                                                  <div class="text-center">
-                                                                                    <button type="submit" class="formbold-btn">EDIT</button>
+                                                                                    <label
+                                                                                        for="exampleInputPassword1">Tipe
+                                                                                        Kendaraan</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->tipe_kendaraan }}">
                                                                                 </div>
-                                                                              </form>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Harga
+                                                                                        Sewa</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->harga_sewa }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleInputtext1">Plat
+                                                                                        Nomor</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->plat_nomor }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Spesifikasi</label>
+                                                                                    <textarea type="text" class="form-control" id="exampleInputtext1">{{ $item->spesifikasi }}</textarea>
+                                                                                </div>
+                                                                                <div class="text-center">
+                                                                                    <button type="submit"
+                                                                                        class="formbold-btn">EDIT</button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
-                                                            </div>
+                                                                </div>
                                                         </tbody>
                                                     </table>
 

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SewaController extends Controller
 {
     public function daftarPenyewa(){
-        $dataPenyewa = Customer::whereNotNull('customers.nik')
+        $dataPenyewa = Customer::where('status_nik', '=', 'Valid')
         ->get();
         return view('daftarPenyewa', compact('dataPenyewa'));
     }
