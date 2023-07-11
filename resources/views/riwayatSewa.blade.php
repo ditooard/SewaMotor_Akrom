@@ -102,10 +102,6 @@
                                                                 style="width: 76.2px;">No</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
-                                                                aria-label="Position: activate to sort column ascending"
-                                                                style="width: 105.2px;">Jenis Sewa</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1"
                                                                 aria-label="Office: activate to sort column ascending"
                                                                 style="width: 59.2px;">Jenis Kendaraan</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
@@ -126,16 +122,16 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {{-- @foreach ($sewa as $item)
+                                                        @foreach ($dataSewa as $item)
                                                             <tr class="odd">
                                                                 <td>{{ $loop->iteration }}</td>
-                                                                <td></td>
+                                                                <td>{{ $item->barang_sewa->tipe_kendaraan }}</td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
 

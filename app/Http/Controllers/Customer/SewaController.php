@@ -18,8 +18,19 @@ class SewaController extends Controller
      */
     public function index()
     {
-        $sewa = Sewa::join('customers', 'sewa.id_customer', '=', 'customers.id')->get();
+        $sewa = Sewa::join('customers', 'sewa.id_customer', '=', 'customers.id')->where('customers.id_user', '=', Auth::user()->id)->get();
         return view('statusSewaCst', compact('sewa'));
+    }
+    public function riwayatSewa()
+    {
+        $dataSewa = Sewa::join('customers', 'sewa.id_customer', '=', 'customers.id')
+        ->where(function ($query) {
+            $query->where('sewa.status_sewa', '=', 'Sewa')
+            ->orWhere('sewa.status_sewa', '=', 'Kembali');
+        })
+        ->where('customers.id_user', '=', Auth::user()->id)
+        ->get();
+        return view('riwayatSewa', compact('dataSewa'));
     }
 
     /**
@@ -46,21 +57,21 @@ class SewaController extends Controller
             'mulai_sewa' => 'required',
             'selesai_sewa' => 'required',
             'keperluan_sewa' => 'required'
-        ],[
+        ], [
             'tipe_kendaraan.required' => 'Pilih tipe motor terlebih dahulu',
             'mulai_sewa.required' => 'Masukkan tanggal peminjaman terlebih dahulu',
             'selesai_sewa.required' => 'Masukkan tanggal selesai terlebih dahulu',
             'keperluan_sewa.required' => 'Masukkan alasan peminjaman terlebih dahulu',
         ]);
         $getIDByLog = Customer::where('id_user', '=', Auth::user()->id)->first();
-            Sewa::create([
-                'id_motor' => $request->tipe_kendaraan,
-                'id_customer' => $getIDByLog->id,
-                'mulai_sewa' => $request->mulai_sewa,
-                'selesai_sewa'=>$request->selesai_sewa,
-                'keperluan_Sewa' => $request->keperluan_sewa,
-                'status_sewa' => 'Booking'
-            ]);
+        Sewa::create([
+            'id_motor' => $request->tipe_kendaraan,
+            'id_customer' => $getIDByLog->id,
+            'mulai_sewa' => $request->mulai_sewa,
+            'selesai_sewa' => $request->selesai_sewa,
+            'keperluan_Sewa' => $request->keperluan_sewa,
+            'status_sewa' => 'Booking'
+        ]);
         return redirect()->back()->with('success', 'Berhasil melakukan penyewaan');
     }
 

@@ -16,7 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -122,11 +122,11 @@
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
                                                                 style="width: 68.2px;">Status Sewa</th>
-                                                                <th class="sorting" tabindex="0"
+                                                            <th class="sorting" tabindex="0"
                                                                 aria-controls="dataTable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
-                                                                style="width: 68.2px;">Info</th>
+                                                                style="width: 68.2px;">Action</th>
                                                         </tr>
                                                     </thead>
                                                     </tr>
@@ -148,9 +148,93 @@
                                                                 <td>{{ $item->keperluan_Sewa }}</td>
                                                                 <td>{{ $item->status_sewa }}</td>
                                                                 <td>
-                                                                    
+                                                                    <a href="#" class="btn btn-info btn-circle"
+                                                                        data-toggle="modal"
+                                                                        data-target="#myModal{{ $item->id }}">
+                                                                        <i class="fas fa-info"></i>
+                                                                    </a>
+                                                                    <a href="https://wa.me/6281357426470?text=Halo%2C+Admin%0D%0A%0D%0ASaya,+{{ Auth::user()->name }}+akan+membayar+sewa+kendaraan+{{ $item->barang_sewa->tipe_kendaraan }}%0D%0A%0D%0A*Total+Harga+Sewa%3A*%0D%0A{{ $item->barang_sewa->harga_sewa * $durasiSewa }}"
+                                                                        class="btn btn-success btn-circle">
+                                                                        <i class="fas fa-money-bill"></i>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
+
+                                                            <div id="myModal{{ $item->id }}" class="modal fade"
+                                                                role="dialog">
+                                                                <div class="modal-dialog">
+                                                                    <!-- konten modal-->
+                                                                    <div class="modal-content">
+                                                                        <!-- heading modal -->
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
+                                                                        </div>
+                                                                        <!-- body modal -->
+                                                                        <div class="modal-body">
+                                                                            <div class="image">
+                                                                                <label for="exampleInputPassword1">Foto
+                                                                                    Kendaraan</label>
+                                                                                <img src="{{ asset('image_vehicle/' . $item->barang_sewa->foto_kendaraan) }}"
+                                                                                    class="img-thumbnail"
+                                                                                    alt="{{ $item->barang_sewa->foto_kendaraan }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Tipe
+                                                                                    Kendaraan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="tipe_kendaraan"
+                                                                                    id="tipeKendaraan{{ $item->id }}"
+                                                                                    value="{{ $item->barang_sewa->tipe_kendaraan }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Harga
+                                                                                    Sewa</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="hargaSewa{{ $item->id }}"
+                                                                                    name="harga_sewa"
+                                                                                    value="{{ $item->barang_sewa->harga_sewa }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Plat
+                                                                                    Nomor</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="plat_nomor"
+                                                                                    id="platNomor{{ $item->id }}"
+                                                                                    value="{{ $item->barang_sewa->plat_nomor }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="exampleInputtext1">Spesifikasi</label>
+                                                                                <textarea type="text" name="spesifikasi" class="form-control" id="spesifikasi{{ $item->id }}">{{ $item->barang_sewa->spesifikasi }}</textarea>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Total
+                                                                                    Harga Sewa</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="totalHarga{{ $item->id }}"
+                                                                                    disabled>
+                                                                            </div>
+                                                                            <script>
+                                                                                var hargaSewa{{ $item->id }} = parseFloat(document.getElementById('hargaSewa{{ $item->id }}').value);
+                                                                                var durasiSewa{{ $item->id }} = parseInt('{{ $durasiSewa }}');
+                                                                                var totalHarga{{ $item->id }} = hargaSewa{{ $item->id }} * durasiSewa{{ $item->id }};
+                                                                                document.getElementById('totalHarga{{ $item->id }}').value = totalHarga{{ $item->id }};
+
+                                                                                var waLink{{ $item->id }} = document.querySelector('#myModal{{ $item->id }} .btn-success');
+                                                                                var waLinkURL{{ $item->id }} = waLink{{ $item->id }}.getAttribute('href');
+                                                                                waLinkURL{{ $item->id }} = waLinkURL{{ $item->id }}.replace('628xxxxx', '628xxxxxxxxxx');
+                                                                                waLink{{ $item->id }}.setAttribute('href', waLinkURL{{ $item->id }} + '&totalharga=' +
+                                                                                    totalHarga{{ $item->id }});
+                                                                            </script>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
