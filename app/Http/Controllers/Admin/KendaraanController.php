@@ -43,7 +43,7 @@ class KendaraanController extends Controller
             'harga_sewa' => 'required',
             'plat_nomor' => 'required|unique:motors,plat_nomor',
             'spesifikasi' => 'required',
-            'foto_kendaraan' => 'required|image|mimes:jpeg,jpg,png'
+            'foto_kendaraan' => 'required|image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
         $image = $request->file('foto_kendaraan');
@@ -57,8 +57,8 @@ class KendaraanController extends Controller
             'spesifikasi' => $request->spesifikasi,
             'foto_kendaraan' => $image_name
         ]);
-        
-        return redirect()->back();
+
+        return redirect()->back()->with('success', 'Berhasil menambah kendaraan');
     }
 
     /**
@@ -92,7 +92,39 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tipe_sewa' => 'required',
+            'tipe_kendaraan' => 'required|unique:motors,tipe_kendaraan,' . $id,
+            'harga_sewa' => 'required',
+            'plat_nomor' => 'required|unique:motors,plat_nomor,' . $id,
+            'spesifikasi' => 'required',
+            'foto_kendaraan' => 'image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        $dataKendaraan = Motor::findOrFail($id);
+        $dataKendaraan->update([
+            'tipe_sewa' => $request->tipe_sewa,
+            'tipe_kendaraan' => $request->tipe_kendaraan,
+            'harga_sewa' => $request->harga_sewa,
+            'plat_nomor' => $request->plat_nomor,
+            'spesifikasi' => $request->spesifikasi
+        ]);
+
+        if ($request->hasFile('foto_kendaraan')) {
+            $image = $request->file('foto_kendaraan');
+            $image_name = $request->tipe_kendaraan . "." . $request->file('foto_kendaraan')->extension();
+            $image->move(public_path('image_vehicle'), $image_name);
+
+            if (!empty($dataKendaraan->foto_kendaraan)) {
+                unlink(public_path('image_vehicle/' . $dataKendaraan->foto_kendaraan));
+            }
+
+            $dataKendaraan->update([
+                'foto_kendaraan' => $image_name
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Berhasil update kendaraan');
     }
 
     /**
@@ -103,6 +135,23 @@ class KendaraanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            // Temukan data yang ingin dihapus berdasarkan ID
+            $dataKendaraan = Motor::findOrFail($id);
+
+            // Hapus gambar jika ada
+            if (!empty($dataKendaraan->foto_kendaraan)) {
+                unlink(public_path('image_vehicle/' . $dataKendaraan->foto_kendaraan));
+            }
+
+            // Hapus data
+            $dataKendaraan->delete();
+
+            // Setelah berhasil menghapus data, kembalikan respons atau lakukan tindakan lainnya
+            return redirect()->back()->with('success', 'Data berhasil dihapus');
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, kembalikan respons dengan pesan error
+            return redirect()->back()->with('error', 'Gagal menghapus data karena sudah disewa');
+        }
     }
 }

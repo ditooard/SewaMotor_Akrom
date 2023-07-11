@@ -23,6 +23,7 @@ class Customer extends Model
             'kewarganegaraan',
             'foto_ktp',
             'membership',
+            'status_nik'
     ];
 
     public function pengguna(): HasOne

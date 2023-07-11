@@ -93,7 +93,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         Daftar Penyewa</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countPenyewa }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-fw fa-table fa-2x text-gray-300"></i>
@@ -111,7 +111,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         KENDARAAN TERSEDIA</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraan }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
@@ -129,7 +129,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">KENDARAAN DISEWA
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
@@ -147,7 +147,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                         MEMBERSHIP</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countMembership }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-star fa-2x text-gray-300"></i>
@@ -186,7 +186,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         KENDARAAN TERSEDIA</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraan }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
@@ -204,7 +204,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">KENDARAAN DISEWA
                                                     </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-motorcycle fa-2x text-gray-300"></i>

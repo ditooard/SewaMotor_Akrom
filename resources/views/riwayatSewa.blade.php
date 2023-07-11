@@ -85,7 +85,8 @@
                                                 <div id="dataTable_filter" class="dataTables_filter">
                                                     <label>Search:<input type="search"
                                                             class="form-control form-control-sm col" placeholder=""
-                                                            aria-controls="dataTable"></label></div>
+                                                            aria-controls="dataTable"></label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -111,31 +112,152 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
-                                                                style="width: 30.2px;">Lama Sewa</th>
+                                                                style="width: 30.2px;">Tanggal Sewa</th>
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 30.2px;">Selesai Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 30.2px;">Durasi Sewa</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
-                                                                style="width: 68.2px;">Tanggal Sewa</th>
+                                                                style="width: 68.2px;">Total Harga</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Status Sewa</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="dataTable" rowspan="1"
                                                                 colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
                                                                 style="width: 68.2px;">Tanggal Kembali</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Start date: activate to sort column ascending"
+                                                                style="width: 68.2px;">Action</th>
                                                         </tr>
                                                     </thead>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {{-- @foreach ($sewa as $item)
+                                                        @foreach ($dataSewa as $item)
                                                             <tr class="odd">
                                                                 <td>{{ $loop->iteration }}</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td>{{ $item->barang_sewa->tipe_sewa }}</td>
+                                                                <td>{{ $item->barang_sewa->tipe_kendaraan }}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($item->mulai_sewa)->isoFormat('dddd, DD/MM/YYYY') }}
+                                                                </td>
+                                                                <td>{{ \Carbon\Carbon::parse($item->selesai_sewa)->isoFormat('dddd, DD/MM/YYYY') }}
+                                                                </td>
+                                                                <td>
+                                                                    @php
+                                                                        $mulaiSewa = \Carbon\Carbon::parse($item->mulai_sewa);
+                                                                        $selesaiSewa = \Carbon\Carbon::parse($item->selesai_sewa);
+                                                                        $durasiSewa = $selesaiSewa->diffInDays($mulaiSewa);
+                                                                    @endphp
+                                                                    {{ $durasiSewa }} hari
+                                                                </td>
+                                                                <td>
+                                                                    @php
+                                                                        $totalHarga = $durasiSewa * $item->barang_sewa->harga_sewa;
+                                                                    @endphp
+                                                                    {{ $totalHarga }}
+                                                                </td>
+                                                                <td>{{ $item->status_sewa }}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_kembali)->isoFormat('dddd, DD/MM/YYYY') }}
+                                                                </td>
+                                                                <td>
+                                                                    <a href="#" class="btn btn-info btn-circle"
+                                                                        data-toggle="modal"
+                                                                        data-target="#myModal{{ $item->id }}">
+                                                                        <i class="fas fa-info"></i>
+                                                                    </a>
+                                                                </td>
                                                             </tr>
-                                                        @endforeach --}}
+
+                                                            <div id="myModal{{ $item->id }}" class="modal fade"
+                                                                role="dialog">
+                                                                <div class="modal-dialog">
+                                                                    <!-- konten modal-->
+                                                                    <div class="modal-content">
+                                                                        <!-- heading modal -->
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
+                                                                        </div>
+                                                                        <!-- body modal -->
+                                                                        <div class="modal-body">
+                                                                            <div class="image">
+                                                                                <label for="exampleInputPassword1">Foto
+                                                                                    Kendaraan</label>
+                                                                                <img src="{{ asset('image_vehicle/' . $item->barang_sewa->foto_kendaraan) }}"
+                                                                                    class="img-thumbnail"
+                                                                                    alt="{{ $item->barang_sewa->foto_kendaraan }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Tipe
+                                                                                    Kendaraan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="tipe_kendaraan"
+                                                                                    id="tipeKendaraan{{ $item->id }}"
+                                                                                    value="{{ $item->barang_sewa->tipe_kendaraan }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Harga
+                                                                                    Sewa</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="hargaSewa{{ $item->id }}"
+                                                                                    name="harga_sewa"
+                                                                                    value="{{ $item->barang_sewa->harga_sewa }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Plat
+                                                                                    Nomor</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="plat_nomor"
+                                                                                    id="platNomor{{ $item->id }}"
+                                                                                    value="{{ $item->barang_sewa->plat_nomor }}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="exampleInputtext1">Spesifikasi</label>
+                                                                                <textarea type="text" name="spesifikasi" class="form-control" id="spesifikasi{{ $item->id }}">{{ $item->barang_sewa->spesifikasi }}</textarea>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputtext1">Total
+                                                                                    Harga Sewa</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="totalHarga{{ $item->id }}"
+                                                                                    disabled>
+                                                                            </div>
+                                                                            <script>
+                                                                                var hargaSewa{{ $item->id }} = parseFloat(document.getElementById('hargaSewa{{ $item->id }}').value);
+                                                                                var durasiSewa{{ $item->id }} = parseInt('{{ $durasiSewa }}');
+                                                                                var totalHarga{{ $item->id }} = hargaSewa{{ $item->id }} * durasiSewa{{ $item->id }};
+                                                                                document.getElementById('totalHarga{{ $item->id }}').value = totalHarga{{ $item->id }};
+
+                                                                                var waLink{{ $item->id }} = document.querySelector('#myModal{{ $item->id }} .btn-success');
+                                                                                var waLinkURL{{ $item->id }} = waLink{{ $item->id }}.getAttribute('href');
+                                                                                waLinkURL{{ $item->id }} = waLinkURL{{ $item->id }}.replace('628xxxxx', '628xxxxxxxxxx');
+                                                                                waLink{{ $item->id }}.setAttribute('href', waLinkURL{{ $item->id }} + '&totalharga=' +
+                                                                                    totalHarga{{ $item->id }});
+                                                                            </script>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
 

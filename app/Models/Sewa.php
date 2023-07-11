@@ -17,6 +17,8 @@ class Sewa extends Model
         'mulai_sewa',
         'selesai_sewa',
         'keperluan_Sewa',
+        'status_sewa',
+        'tanggal_kembali'
     ];
     public function penyewa(): HasOne
     {

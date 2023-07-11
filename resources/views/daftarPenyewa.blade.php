@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -69,6 +70,15 @@
                 <div class="container-fluid">
                     <!-- Illustrations -->
                     <div class="container-fluid">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -112,9 +122,15 @@
                                                             <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                                 rowspan="1" colspan="1"
                                                                 aria-label="Age: activate to sort column ascending"
-                                                                style="width: 30.2px;">Alamat</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                                rowspan="1" colspan="1"
+                                                                style="width: 30.2px;">Status NIK</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 30.2px;">Membership</th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="dataTable" rowspan="1"
+                                                                colspan="1"
                                                                 aria-label="Start date: activate to sort column ascending"
                                                                 style="width: 68.2px;">Aksi</th>
                                                         </tr>
@@ -125,15 +141,129 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $item->pengguna->email }}</td>
                                                                 <td>{{ $item->pengguna->name }}</td>
-                                                                <td>{{ $item->alamat }}</td>
+                                                                <td>{{ $item->status_nik == 'Valid' ? 'Valid' : ($item->status_nik == 'Tidak_Valid' ? 'Tidak Valid' : 'Proses') }}
+                                                                <td>{{ $item->membership == 'Member' ? 'Member' : ($item->membership == 'Non_Member' ? 'Non Member' : 'Proses') }}
                                                                 <td>
-                                                                    <a href="#" class="btn btn-danger btn-circle">
-                                                                        <i class="fas fa-trash"></i>
+                                                                    <a href="#" class="btn btn-info btn-circle"
+                                                                        data-toggle="modal"
+                                                                        data-target="#myModal{{ $item->id }}">
+                                                                        <i class="fas fa-info-circle"></i>
                                                                     </a>
-                                                                   
+                                                                    <button onclick="hapusPenyewa({{ $item->id }})"
+                                                                        class="btn btn-danger btn-circle">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </button>
+
                                                                 </td>
                                                             </tr>
                                                         @endforeach
+                                                        @if (isset($item))
+                                                            <div id="myModal{{ $item->id }}" class="modal fade"
+                                                                role="dialog">
+                                                                <div class="modal-dialog">
+                                                                    <!-- konten modal-->
+                                                                    <div class="modal-content">
+                                                                        <!-- heading modal -->
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal">&times;</button>
+                                                                        </div>
+                                                                        <!-- body modal -->
+                                                                        <div class="modal-body">
+                                                                            <form>
+                                                                                <div class="text-center">
+                                                                                    <img src="{{ asset('img/' . $item->foto_ktp) }}"
+                                                                                        class="img-thumbnail"
+                                                                                        alt="{{ $item->foto_ktp }}">
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputEmail1">NIK</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputEmail1"
+                                                                                        aria-describedby="emailHelp"
+                                                                                        value="{{ $item->nik }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">NAMA</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->pengguna->name }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Tempat
+                                                                                        Lahir</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->tempat_lahir }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Tanggal
+                                                                                        Lahir</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ \Carbon\Carbon::parse($item->tanggal_lahir)->isoFormat('dddd, DD/MM/YYYY') }}">
+
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Alamat</label>
+                                                                                    <textarea type="text" class="form-control" id="exampleInputtext1">{{ $item->alamat }}</textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">RT/RW</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->rt_rw }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Kel/Desa</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->kelurahan }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Kecamatan</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->kecamatan }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Pekerjaan</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->pekerjaan }}">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        for="exampleInputtext1">Kewarganegaraan</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="exampleInputtext1"
+                                                                                        value="{{ $item->kewarganegaraan }}">
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                     </tbody>
                                                 </table>
 
@@ -188,7 +318,45 @@
             </div>
         </div>
     </div>
+    <script>
+        function hapusPenyewa(kode) {
+            Swal.fire({
+                title: 'Apakah anda ingin menghapus penyewa?',
+                html: `Jika penyewa telah melakukan penyewaan maka tidak dapat dihapus`,
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create a hidden form
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `{{ route('hapusPenyewa', ['id' => 'kode']) }}`.replace('kode',
+                        kode); // Update with the appropriate URL
+                    document.body.appendChild(form);
 
+                    // Add the CSRF token input field to the form
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = '{{ csrf_token() }}'; // Update if necessary
+                    form.appendChild(csrfInput);
+
+                    // Add the hidden method field for PUT request
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'DELETE';
+                    form.appendChild(methodInput);
+
+                    // Submit the form
+                    form.submit();
+                }
+            });
+        }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

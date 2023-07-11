@@ -72,7 +72,7 @@ class ProfileController extends Controller
             'nik' => 'unique:customers,nik',
             'tanggal_lahir' => 'date',
             'alamat' => 'required',
-            'foto_ktp' => 'image|mimes:jpeg,jpg,png',
+            'foto_ktp' => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         $image = $request->file('foto_ktp');
@@ -92,7 +92,8 @@ class ProfileController extends Controller
                 'pekerjaan' => $request->pekerjaan,
                 'kewarganegaraan' => $request->kewarganegaraan,
                 'foto_ktp' => $image_name,
-                'membership' => 'Non_Member'
+                'membership' => 'Non_Member',
+                'status_nik' => 'Proses'
             ]
         );
         $dataUser = User::where('id', Auth::user()->id)->first();
