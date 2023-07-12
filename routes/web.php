@@ -24,7 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('sewaMotor');
 Route::put('/validasiSewa/{id}', [AdminSewaController::class, 'validasiSewa'])->name('validasiSewa');
 
@@ -64,6 +63,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('editKtp', function () {
+    return view('editKtp');
 });
 
 require __DIR__.'/auth.php';
