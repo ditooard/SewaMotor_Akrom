@@ -87,22 +87,34 @@
                     <p>Anda belum memiliki akun ? <a class="white" href="register">Register Now</a></p>
                     <!-- Sign Up Form -->
                     <div class="form-container">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                <span>{{ session('error') }}</span>
+                            </div>
+                        @endif
                         <x-auth-session-status class="mb-4" :status="session('status')" />
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <!-- Email Address -->
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('email') ? 'has-error has-danger' : '' }}">
                                 <input type="email" class="form-control-input" name="email" id="email"
                                     required="" value="{{ old('email') }}" required>
                                 <label class="label-control" for="lemail">Email</label>
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
 
                             <!-- Password -->
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('password') ? 'has-error has-danger' : '' }}">
                                 <input type="password" class="form-control-input" name="password" id="password"
                                     required="" value="{{ old('password') }}" required>
                                 <label class="label-control" for="lpassword">Password</label>
+                                @if ($errors->has('password'))
+                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
                             </div>
+
 
                             <!-- Remember Me -->
                             <div class="flex items-center justify-end mt-4">

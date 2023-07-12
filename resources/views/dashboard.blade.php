@@ -221,7 +221,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Riwayat Sewa</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-bookmark fa-2x text-gray-300"></i>
@@ -238,7 +238,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         Status Membership</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Non Member</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statusMember->membership == 'Member' ? 'Member' : ($statusMember->membership == 'Non_Member' ? 'Non Member' : 'Proses') }}</div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fa fa-star fa-2x text-gray-300"></i>

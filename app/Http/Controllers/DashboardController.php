@@ -26,6 +26,7 @@ class DashboardController extends Controller
         $countMembership = Customer::where('membership', 'Member')
             ->where('id_user', '!=', Auth::user()->id)
             ->count();
-        return view('dashboard', compact('countMembership', 'countKendaraan', 'countKendaraanTersewa', 'countPenyewa'));
+        $statusMember = Customer::join('users','users.id','=','customers.id_user')->where('customers.id_user','=',Auth::user()->id)->first();
+        return view('dashboard', compact('countMembership', 'countKendaraan', 'countKendaraanTersewa', 'countPenyewa','statusMember'));
     }
 }
