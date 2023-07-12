@@ -23,6 +23,7 @@ class SewaController extends Controller
     public function validasiSewa(Request $request, $id)
     {
         $setujuiSewaById = Sewa::where('id', '=', $id)->first();
+
         if ($request->status_sewa == 'Kembali') {
             $request->validate([
                 'tanggal_kembali' => 'required'
@@ -33,12 +34,19 @@ class SewaController extends Controller
             $setujuiSewaById->update([
                 'tanggal_kembali' => $request->tanggal_kembali
             ]);
+        } elseif ($request->status_sewa == 'Booking' || $request->status_sewa == 'Sewa' || $request->status_sewa == 'Ditolak') {
+            $setujuiSewaById->update([
+                'tanggal_kembali' => null
+            ]);
         }
+
         $setujuiSewaById->update([
             'status_sewa' => $request->status_sewa
         ]);
+
         return redirect()->back()->with('success', 'Berhasil mengubah status penyewaan');
     }
+
     public function hapusPenyewa($id)
     {
         try {
