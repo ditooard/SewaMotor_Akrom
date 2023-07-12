@@ -12,13 +12,13 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 
 </head>
 
@@ -49,8 +49,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -67,209 +67,223 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                            <!-- Illustrations -->
-                            @if (auth()->user()->level == "admin")
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">DASHBOARD</h6>
+                    <!-- Illustrations -->
+                    @if (auth()->user()->level == 'admin')
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">DASHBOARD</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h1 class="m-0 font-weight-bold text-primary">SELAMAT DATANG, ADMINISTRATOR</h1>
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                        src="img/undraw_posting_photo.svg" alt="...">
                                 </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <h1 class="m-0 font-weight-bold text-primary">SELAMAT DATANG, ADMINISTRATOR</h1>
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <div class="text-center">
-                                        <h5>Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan pelayanan terbaik kami
-                                    </div>
+                                <div class="text-center">
+                                    <h5>Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan
+                                        pelayanan terbaik kami
                                 </div>
                             </div>
-                            <div class="row">
-                                <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Daftar Penyewa</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countPenyewa }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-fw fa-table fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        KENDARAAN TERSEDIA</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraan }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-info shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">KENDARAAN DISEWA
-                                                    </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <!-- Pending Requests Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-warning shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        MEMBERSHIP</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countMembership }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-star fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @if (auth()->user()->level == "customer")
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h4 class="m-0 font-weight-bold text-primary">DASHBOARD</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <h1 class="m-0 font-weight-bold text-primary">SELAMAT DATANG, {{ Auth::user()->name }} </h1>
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <div class="text-center">
-                                        <h5>Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan pelayanan terbaik kami
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <!-- Earnings (Monthly) Card Example -->
-                                
-        
-                                <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        KENDARAAN TERSEDIA</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraan }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <!-- Earnings (Monthly) Card Example -->
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-info shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">KENDARAAN DISEWA
-                                                    </div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Riwayat Sewa</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKendaraanTersewa }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-bookmark fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Status Membership</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statusMember->membership == 'Member' ? 'Member' : ($statusMember->membership == 'Non_Member' ? 'Non Member' : 'Proses') }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fa fa-star fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <!-- Pending Requests Card Example -->
-                               
-                            </div>
-                            @endif
                         </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- End of Main Content -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+                        <div class="row">
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Daftar Penyewa</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countPenyewa }}
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-fw fa-table fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    KENDARAAN TERSEDIA</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countKendaraan }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    KENDARAAN DISEWA
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countKendaraanTersewa }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pending Requests Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    MEMBERSHIP</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countMembership }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-star fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (auth()->user()->level == 'customer')
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h4 class="m-0 font-weight-bold text-primary">DASHBOARD</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h1 class="m-0 font-weight-bold text-primary">SELAMAT DATANG,
+                                        {{ Auth::user()->name }} </h1>
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                        src="img/undraw_posting_photo.svg" alt="...">
+                                </div>
+                                <div class="text-center">
+                                    <h5>Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan
+                                        pelayanan terbaik kami
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Earnings (Monthly) Card Example -->
+
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    KENDARAAN TERSEDIA</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countKendaraan }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    KENDARAAN DISEWA
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countKendaraanTersewa }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-motorcycle fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Riwayat Sewa</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $countKendaraanTersewa }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-bookmark fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Status Membership</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ $statusMember->membership == 'Member' ? 'Member' : ($statusMember->membership == 'Non_Member' ? 'Non Member' : 'Proses') }}
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fa fa-star fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pending Requests Card Example -->
+
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -300,17 +314,17 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src='{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}'></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>

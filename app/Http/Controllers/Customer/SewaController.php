@@ -40,7 +40,12 @@ class SewaController extends Controller
      */
     public function create()
     {
-        $dataKendaraan = Motor::all();
+        $dataKendaraan = Motor::join('sewa', 'sewa.id_motor', '=', 'motors.id')
+        ->where(function ($query) {
+            $query->where('sewa.status_sewa', '!=', 'Booking')
+                ->orWhere('sewa.status_sewa', '=', 'Sewa');
+        })
+            ->get();
         return view('sewa', compact('dataKendaraan'));
     }
 

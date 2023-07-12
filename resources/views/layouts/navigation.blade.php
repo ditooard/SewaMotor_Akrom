@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
 
     <li class="nav-item active">
-        <a class="nav-link" href="dashboard">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>DASHBOARD</span></a>
     </li>
@@ -31,7 +31,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="statusSewaCst">
+        <a class="nav-link" href="{{ route('statusSewaCst') }}">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <span>Status Sewa</span></a>
     </li>
@@ -39,7 +39,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="riwayatSewa">
+        <a class="nav-link" href="{{ route('riwayatSewa') }}">
             <i class="fa fa-bookmark" aria-hidden="true"></i>
             <span>Riwayat Sewa</span></a>
     </li>
@@ -47,7 +47,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="membership">
+        <a class="nav-link" href="{{ route('customer.membership') }}">
             <i class="fa fa-star" aria-hidden="true"></i>
             <span>Membership</span></a>
     </li>
@@ -57,7 +57,7 @@
 
     @if (auth()->user()->level == "admin")
     <li class="nav-item active">
-        <a class="nav-link" href="inputDataMotor">
+        <a class="nav-link" href="{{ route('admin.tampilFormDataMotor') }}">
             <i class="fa fa-motorcycle"></i>
             <span>Data Kendaraan</span></a>
     </li>
@@ -65,7 +65,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="daftarPenyewa">
+        <a class="nav-link" href="{{ route('admin.daftarPenyewa') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Daftar Penyewa</span></a>
     </li>
@@ -73,7 +73,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('sewaMotor') }}">
+        <a class="nav-link" href="{{ route('admin.sewaMotor') }}">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <span>Status Sewa</span></a>
     </li>
@@ -81,7 +81,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="validasiKtp">
+        <a class="nav-link" href="{{ route('admin.validasiKtp') }}">
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             <span>Validasi KTP</span></a>
     </li>
@@ -89,7 +89,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item active">
-        <a class="nav-link" href="validasiMember">
+        <a class="nav-link" href="{{ route('admin.validasiMember') }}">
             <i class="fa fa-star" aria-hidden="true"></i>
             <span> Validasi Membership</span></a>
     </li>
