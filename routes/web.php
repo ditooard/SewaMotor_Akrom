@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::prefix('/admin')->middleware('isAdmin')->group(function () {
     Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('admin.sewaMotor');
     Route::put('/validasiSewa/{id}', [AdminSewaController::class, 'validasiSewa'])->name('validasiSewa');
@@ -64,47 +64,6 @@ Route::prefix('/customer')->middleware('isCustomer')->group(function () {
 
     Route::get('/editKtp', [ProfileController::class, 'index'])->name('customer.editKtp');
 });
-
-
-// Route::prefix('/admin')->middleware('isAdmin')->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-//     Route::get('/sewaMotor', [AdminSewaController::class, 'statusSewa'])->name('sewaMotor');
-//     Route::put('/validasiSewa/{id}', [AdminSewaController::class, 'validasiSewa'])->name('validasiSewa');
-
-//     Route::get('/daftarPenyewa', [AdminSewaController::class, 'daftarPenyewa']);
-//     Route::delete('/hapusPenyewa/{id}', [AdminSewaController::class, 'hapusPenyewa'])->name('hapusPenyewa');
-
-//     Route::get('/validasiKtp', [ValidasiController::class, 'tampilDataKTP']);
-//     Route::put('/setujuiKTP/{id}', [ValidasiController::class, 'setujuiKTP'])->name('setujuiKTP');
-//     Route::put('/tolakKTP/{id}', [ValidasiController::class, 'tolakKTP'])->name('tolakKTP');
-
-//     Route::get('/validasiMember', [ValidasiController::class, 'tampilDataMember']);
-//     Route::put('/setujuiMember/{id}', [ValidasiController::class, 'setujuiMember'])->name('setujuiMember');
-//     Route::put('/tolakMember/{id}', [ValidasiController::class, 'tolakMember'])->name('tolakMember');
-
-//     Route::get('/inputKtp', [ProfileController::class, 'tampilForm'])->name('tampilFormKTP');
-//     Route::put('/inputKtp', [ProfileController::class, 'inputKTP'])->name('postKTP');
-
-//     Route::get('/inputDataMotor', [KendaraanController::class, 'index'])->name('tampilFormDataMotor');
-//     Route::post('/inputDataMotor', [KendaraanController::class, 'store'])->name('postDataMotor');
-//     Route::put('/editDataMotor/{id}', [KendaraanController::class, 'update'])->name('editDataMotor');
-//     Route::delete('/hapusKendaraan/{id}', [KendaraanController::class, 'destroy'])->name('hapusKendaraan');
-// });
-// Route::prefix('/customer')->middleware('isCustomer')->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-//     Route::get('/statusSewaCst', [SewaController::class, 'index']);
-//     Route::get('/create', [SewaController::class, 'create'])->name('createSewa');
-//     Route::post('/store', [SewaController::class, 'store'])->name('storeSewa');
-
-//     Route::get('/riwayatSewa', [SewaController::class, 'riwayatSewa'])->name('riwayatSewa');
-
-
-//     Route::get('/membership', [MemberController::class, 'index'])->name('customer.membership');
-//     Route::post('/ajukanMember', [MemberController::class, 'ajukanMember'])->name('ajukanMember');
-// });
-
 
 
 
