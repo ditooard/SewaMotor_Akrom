@@ -20,7 +20,7 @@
     <meta property="og:type" content="article" />
 
     <!-- Website Title -->
-    <title>Log In - Tivo - SaaS App HTML Landing Page Template</title>
+    <title>Log In - AKROM </title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext"
@@ -56,7 +56,9 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a>
+            <i href="#">
+                <img src="images/akrom.jpg" width="220px" height="80px">
+            </i> 
 
             <!-- Mobile Menu Toggle Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
