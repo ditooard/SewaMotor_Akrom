@@ -45,7 +45,8 @@ Route::prefix('/admin')->middleware('isAdmin')->group(function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::put('/editProfile', [ProfileController::class, 'editProfile'])->name('admin.editProfile');
+Route::put('/editProfile', [ProfileController::class, 'editProfile'])->name('editProfile');
+Route::put('/editAkun', [ProfileController::class, 'editAkun'])->name('editAkun');
 
 
 Route::prefix('/customer')->middleware('isCustomer')->group(function () {

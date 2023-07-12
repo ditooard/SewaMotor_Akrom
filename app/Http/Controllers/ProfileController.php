@@ -8,14 +8,17 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Symfony\Component\Console\Input\Input;
 
 class ProfileController extends Controller
 {
-    public function index(){
-        
-        return view('editKtp');
+    public function index()
+    {
+        $dataCustomer = Customer::where('id_user', '=', Auth::user()->id)->first();
+        return view('editKtp', compact('dataCustomer'));
     }
     /**
      * Display the user's profile form.
@@ -109,5 +112,49 @@ class ProfileController extends Controller
         } elseif ($validasi == true) {
             return redirect('dashboard');
         }
+    }
+    public function editProfile(Request $request)
+    {
+        $editAkun = Customer::where('id_user', '=', Auth::user()->id)->first();
+        $editAkun->update([
+            'nik' => $request->nik,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'rt_rw' => $request->rt_rw,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'pekerjaan' => $request->pekerjaan,
+            'kewarganegaraan' => $request->kewarganegaraan,
+        ]);
+        if ($request->hasFile('foto_ktp')) {
+            $image = $request->file('foto_ktp');
+            $image_name = $request->nik . "." . $request->file('foto_ktp')->extension();
+            $image->move(public_path('img'), $image_name);
+
+            if (!empty($editAkun->foto_ktp)) {
+                unlink(public_path('img/' . $editAkun->foto_ktp));
+            }
+
+            $editAkun->update([
+                'foto_ktp' => $image_name
+            ]);
+        }
+        return redirect()->back()->with('success', 'Detail KTP telah diubah');
+    }
+
+    public function editAkun(Request $request)
+    {
+        $editAkun = User::find(Auth::user()->id);
+        $editAkun->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        if ($request->has('password')) {
+            $editAkun->update([
+                'password' => Hash::make($request->password)
+            ]);
+        }
+        return redirect()->back()->with('success', 'Akun telah diubah');
     }
 }

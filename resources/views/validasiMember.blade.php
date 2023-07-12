@@ -143,6 +143,7 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
+                                                            @endforeach
                                                                 <script>
                                                                     function validasiSetuju(kode) {
                                                                         Swal.fire({
@@ -249,7 +250,6 @@
                                                                         })
                                                                     }
                                                                 </script>
-                                                            @endforeach
                                                         @endif
                                                     </tbody>
                                                 </table>

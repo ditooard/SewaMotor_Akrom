@@ -154,11 +154,14 @@
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown">
-            <x-dropdown-link href="editKtp">
+            @if(Auth::user()->level == 'admin')
+            
+            @elseif (Auth::user()->level == 'customer')
+            <x-dropdown-link href="{{ route('customer.editKtp') }}">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 {{ __('Profile') }}
             </x-dropdown-link>
-            <div class="dropdown-divider"></div>
+            @endif
             <form method="POST" action="{{ route('logout') }}">
                             @csrf
 

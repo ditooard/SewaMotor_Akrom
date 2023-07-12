@@ -22,28 +22,28 @@ class ValidasiController extends Controller
     }
 
     public function setujuiKTP($id){
-        $setujuiKTPByID = Customer::where('id_user', '=', $id)->first();
+        $setujuiKTPByID = Customer::where('id', '=', $id)->first();
         $setujuiKTPByID->update([
             'status_nik' => 'Valid'
         ]);
         return redirect()->back();
     }
     public function tolakKTP($id){
-        $tolakKTPByID = Customer::where('id_user', '=', $id)->first();
+        $tolakKTPByID = Customer::where('id', '=', $id)->first();
         $tolakKTPByID->update([
             'status_nik' => 'Tidak_Valid'
         ]);
         return redirect()->back();
     }
     public function setujuiMember($id){
-        $setujuiKTPByID = Customer::where('id_user', '=', $id)->first();
+        $setujuiKTPByID = Customer::where('id', '=', $id)->first();
         $setujuiKTPByID->update([
             'membership' => 'Member'
         ]);
         return redirect()->back();
     }
     public function tolakMember($id){
-        $tolakKTPByID = Customer::where('id_user', '=', $id)->first();
+        $tolakKTPByID = Customer::where('id', '=', $id)->first();
         $tolakKTPByID->update([
             'membership' => 'Non_Member'
         ]);

@@ -26,7 +26,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->validate([
-            'email' => 'required|email:dns|ends_with:@gmail.com',
+            'email' => 'required|email:dns',
             'password' => 'required'
         ]);
         $credentials = $request->only('email', 'password');
