@@ -81,7 +81,7 @@
                         <a class="nav-link page-scroll" href="#info">INFO KENDARAAN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#pricing">HARGA SEWA </a>
+                        <a class="nav-link page-scroll" href="#pricing">INFORMASI PENYEWAAN </a>
                     </li>
 
                     <!-- Dropdown Menu -->
@@ -108,8 +108,8 @@
                     <div class="col-lg-6 col-xl-5">
                         <div class="text-container">
                             <h1>AKROM RENTAL MOTOR</h1>
-                            <p class="p-large">Menyediakan penyewaan motor daerah Cilacap ,kami menyediakan unit dengan
-                                pelayanan terbaik kami</p>
+                            <p class="p-large">Menyediakan Penyewaan Motor Daerah Cilacap <br> Kami menyediakan unit dengan
+                                pelayanan terbaik</p>
                             <a class="btn-solid-lg page-scroll" href="login">SEWA SEKARANG</a>
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
@@ -200,8 +200,7 @@
                     </div> <!-- end of image-container -->
                     <!-- end of video preview -->
 
-                    <div class="p-heading">What better way to show off Tivo marketing automation saas app than
-                        presenting you some great situations of each module and tool available to users in a video</div>
+                    <div class="p-heading">Video Tutorial Penyewaan menggunakan Website pada Akrom Rental Motor</div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -213,16 +212,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12"></div>
-                <h2 class="h2-heading">Stok Motor</h2>
+                <h2 class="h2-heading">STOK MOTOR</h2>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
         <div class="row">
             <div class="col-lg-12">
-
                 <!-- Card -->
                 @if (isset($dataKendaraan))
                     @forelse ($dataKendaraan as $item)
-                        <div class="card">
+                        <div class="card w-20 h-50">
                             <div class="card-image">
                                 <img class="img-fluid" src="{{ asset('image_vehicle/' . $item->foto_kendaraan) }}"
                                     alt="alternative">
@@ -233,7 +231,7 @@
                             </div>
                         </div>
                     @empty
-                        <div class="card">
+                        <div class="card w-20 h-100">
                             <h1>Tidak ada kendaraan yang tersedia</h1>
                         </div>
                     @endforelse
@@ -580,88 +578,141 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="above-heading">Info Sewa</div>
-                    <h2 class="h2-heading">Membership</h2>
+                    <h2 class="h2-heading">INFO PENYEWAAN</h2>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
                 <div class="col-lg-12">
-
                     <!-- Card-->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">NON MEMBER</div>
-                            <div class="price"><span class="value">Free</span></div>
-                            <div class="divider"></div>
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Email Marketing Module</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">User Control Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i>
-                                    <div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i>
-                                    <div class="media-body">Collected Data Reports</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i>
-                                    <div class="media-body">Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="sign-up.html">SIGN UP</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
-
-                    <!-- Card-->
-                    <div class="card">
+                    <div class="card w-20 h-30">
                         <!--<div class="label">
                             <p class="best-value">Best Value</p>
                         </div> -->
                         <div class="card-body">
-                            <div class="card-title">MEMBER</div>
-                            <div class="price"><span class="currency">$</span><span class="value">39.99</span>
+                            <div class="card-title">Unit Biasa</div>
+                            <div class="price"><span class="currency">Rp</span><span class="value">70.000</span>
                             </div>
-                            <div class="frequency">monthly</div>
+                            <div class="frequency">Perhari</div>
                             <div class="divider"></div>
                             <ul class="list-unstyled li-space-lg">
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">Email Marketing Module</div>
+                                    <div class="media-body">Unit Motor Yamaha Mio</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">User Control Management</div>
+                                    <div class="media-body">Free Pickup & Delivery</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">List Building And Cleaning</div>
+                                    <div class="media-body">Helm SNI</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">Collected Data Reports</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Planning And Evaluation</div>
+                                    <div class="media-body">Jas Hujan</div>
                                 </li>
                             </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="sign-up.html">SIGN UP</a>
-                            </div>
+                          
                         </div>
                     </div> <!-- end of card -->
                     <!-- end of card -->
 
+                      <!-- Card-->
+                      <div class="card w-20 h-30">
+                        <!--<div class="label">
+                            <p class="best-value">Best Value</p>
+                        </div> -->
+                        <div class="card-body">
+                            <div class="card-title">Unit Spesial</div>
+                            <div class="price"><span class="currency">Rp</span><span class="value">100.000</span>
+                            </div>
+                            <div class="frequency">Perhari</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Unit Motor Honda Beat <br>&  Honda Genio</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Free Pickup & Delivery</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Helm SNI</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Jas Hujan</div>
+                                </li>
+                            </ul>
+                          
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                    <div class="card w-20 h-30">
+                        <!--<div class="label">
+                            <p class="best-value">Best Value</p>
+                        </div> -->
+                        <div class="card-body " >
+                            <div class="card-title">Unit Premium</div>
+                            <div class="price"><span class="currency">Rp</span><span class="value">200.000</span>
+                            </div>
+                            <div class="frequency">Perhari</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Unit Motor Honda PCX <br>&  Yamaha Nmax</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Free Pickup & Delivery</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Helm SNI</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Jas Hujan</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="h2-heading">INFO MEMBERSHIP</h2>
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                     <!-- Card-->
+                     <div class="card w-20 h-30">
+                        <div class="card-body">
+                            <div class="card-title">MEMBERSHIP</div>
+                            <div class="price"><span class="value">FREE</span></div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Pelayanan Terbaik</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Diskon 20 %</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Memenuhi Syarat & Ketentuan </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+</div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('motors', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipe_sewa', ['Premium', 'Spesial']);
+            $table->enum('tipe_sewa', ['Premium', 'Spesial','Biasa']);
             $table->string('tipe_kendaraan');
             $table->integer('harga_sewa')->length(255);
             $table->string('plat_nomor');
