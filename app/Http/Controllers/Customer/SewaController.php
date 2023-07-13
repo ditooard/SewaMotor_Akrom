@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Motor;
 use App\Models\Sewa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,11 @@ class SewaController extends Controller
     public function index()
     {
         $sewa = Sewa::join('customers', 'sewa.id_customer', '=', 'customers.id')->where('customers.id_user', '=', Auth::user()->id)->get();
-        return view('statusSewaCst', compact('sewa'));
+        $cekMembership = User::join('customers', 'customers.id_user', '=', 'users.id')
+        ->where('customers.id_user', '=', Auth::user()->id)
+            ->select('customers.membership')
+            ->first();
+        return view('statusSewaCst', compact('sewa', 'cekMembership'));
     }
     public function riwayatSewa()
     {
@@ -30,6 +35,11 @@ class SewaController extends Controller
         })
         ->where('customers.id_user', '=', Auth::user()->id)
         ->get();
+
+        $cekMembership = User::join('customers', 'customers.id_user', '=', 'users.id')
+        ->where('customers.id_user', '=', Auth::user()->id)
+            ->select('customers.membership')
+            ->first();
         return view('riwayatSewa', compact('dataSewa'));
     }
 
@@ -40,12 +50,15 @@ class SewaController extends Controller
      */
     public function create()
     {
-        $dataKendaraan = Motor::join('sewa', 'sewa.id_motor', '=', 'motors.id')
+        $dataKendaraan =
+        Motor::from('motors')
+        ->leftJoin('sewa', 'motors.id', '=', 'sewa.id_motor')
         ->where(function ($query) {
-            $query->where('sewa.status_sewa', '!=', 'Booking')
-                ->orWhere('sewa.status_sewa', '=', 'Sewa');
-        })
+            $query->whereNotIn('sewa.status_sewa', ['Booking', 'Sewa'])
+                ->orWhereNull('sewa.id');
+        })->select('motors.*')
             ->get();
+
         return view('sewa', compact('dataKendaraan'));
     }
 

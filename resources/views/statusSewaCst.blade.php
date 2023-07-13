@@ -153,7 +153,8 @@
                                                                         data-target="#myModal{{ $item->id }}">
                                                                         <i class="fas fa-info"></i>
                                                                     </a>
-                                                                    <a href="https://wa.me/6281357426470?text=Halo%2C+Admin%0D%0A%0D%0ASaya,+{{ Auth::user()->name }}+akan+membayar+sewa+kendaraan+{{ $item->barang_sewa->tipe_kendaraan }}%0D%0A%0D%0A*Total+Harga+Sewa%3A*%0D%0A{{ $item->barang_sewa->harga_sewa * $durasiSewa }}"
+                                                                    <a href="https://wa.me/6281357426470?text=Halo%2C+Admin%0D%0A%0D%0ASaya,+{{ Auth::user()->name }}+akan+membayar+sewa+kendaraan+{{ $item->barang_sewa->tipe_kendaraan }}%0D%0A%0D%0A*Total+Harga+Sewa%3A*%0D%0A{{ 'Rp ' . ($cekMembership->membership == 'Member' ? number_format($item->barang_sewa->harga_sewa * $durasiSewa * 0.8, 0, ',', '.') : number_format($item->barang_sewa->harga_sewa * $durasiSewa, 0, ',', '.')) }}
+"
                                                                         class="btn btn-success btn-circle">
                                                                         <i class="fas fa-money-bill"></i>
                                                                     </a>
@@ -211,6 +212,7 @@
                                                                                     for="exampleInputtext1">Spesifikasi</label>
                                                                                 <textarea type="text" name="spesifikasi" class="form-control" id="spesifikasi{{ $item->id }}">{{ $item->barang_sewa->spesifikasi }}</textarea>
                                                                             </div>
+
                                                                             <div class="form-group">
                                                                                 <label for="exampleInputtext1">Total
                                                                                     Harga Sewa</label>
@@ -222,15 +224,25 @@
                                                                             <script>
                                                                                 var hargaSewa{{ $item->id }} = parseFloat(document.getElementById('hargaSewa{{ $item->id }}').value);
                                                                                 var durasiSewa{{ $item->id }} = parseInt('{{ $durasiSewa }}');
-                                                                                var totalHarga{{ $item->id }} = hargaSewa{{ $item->id }} * durasiSewa{{ $item->id }};
-                                                                                document.getElementById('totalHarga{{ $item->id }}').value = totalHarga{{ $item->id }};
+                                                                                if ({{ $cekMembership->membership == 'Member' }}) {
+                                                                                    var totalHarga{{ $item->id }} = hargaSewa{{ $item->id }} * durasiSewa{{ $item->id }} * 0.8;
+                                                                                } else {
+                                                                                    var totalHarga{{ $item->id }} = hargaSewa{{ $item->id }} * durasiSewa{{ $item->id }};
+                                                                                }
+                                                                                var formattedTotalHarga{{ $item->id }} = totalHarga{{ $item->id }}.toLocaleString('id-ID', {
+                                                                                    style: 'currency',
+                                                                                    currency: 'IDR'
+                                                                                });
+
+                                                                                document.getElementById('totalHarga{{ $item->id }}').value = formattedTotalHarga{{ $item->id }};
 
                                                                                 var waLink{{ $item->id }} = document.querySelector('#myModal{{ $item->id }} .btn-success');
                                                                                 var waLinkURL{{ $item->id }} = waLink{{ $item->id }}.getAttribute('href');
                                                                                 waLinkURL{{ $item->id }} = waLinkURL{{ $item->id }}.replace('628xxxxx', '628xxxxxxxxxx');
                                                                                 waLink{{ $item->id }}.setAttribute('href', waLinkURL{{ $item->id }} + '&totalharga=' +
-                                                                                    totalHarga{{ $item->id }});
+                                                                                    formattedTotalHarga{{ $item->id }});
                                                                             </script>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>

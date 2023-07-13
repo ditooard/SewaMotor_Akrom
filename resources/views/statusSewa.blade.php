@@ -199,13 +199,23 @@
                                                                     aria-label="Start date: activate to sort column ascending"
                                                                     style="width: 68.2px;">{{ $s->status_sewa }}
                                                                 </th>
-                                                                <th class="sorting" tabindex="0"
-                                                                    aria-controls="dataTable" rowspan="1"
-                                                                    colspan="1"
-                                                                    aria-label="Start date: activate to sort column ascending"
-                                                                    style="width: 68.2px;">
-                                                                    {{ \Carbon\Carbon::parse($s->tanggal_kembali)->isoFormat('dddd, DD/MM/YYYY') }}
-                                                                </th>
+                                                                @if (isset($s->tanggal_kembali))
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Start date: activate to sort column ascending"
+                                                                        style="width: 68.2px;">
+                                                                        {{ \Carbon\Carbon::parse($s->tanggal_kembali)->isoFormat('dddd, DD/MM/YYYY') }}
+                                                                    </th>
+                                                                @else
+                                                                    <th class="sorting" tabindex="0"
+                                                                        aria-controls="dataTable" rowspan="1"
+                                                                        colspan="1"
+                                                                        aria-label="Start date: activate to sort column ascending"
+                                                                        style="width: 68.2px;">
+                                                                    </th>
+                                                                @endif
+
                                                                 <th class="sorting" tabindex="0"
                                                                     aria-controls="dataTable" rowspan="1"
                                                                     colspan="1"
@@ -307,7 +317,7 @@
                                                                                         class="form-control"
                                                                                         id="totalHarga{{ $s->id }}"
                                                                                         readonly
-                                                                                        value="{{ $s->barang_sewa->harga_sewa * $durasiSewa }}">
+                                                                                        value="{{ 'Rp ' . ($s->penyewa->membership == 'Member' ? number_format($s->barang_sewa->harga_sewa * $durasiSewa * 0.8, 0, ',', '.') : number_format($s->barang_sewa->harga_sewa * $durasiSewa, 0, ',', '.')) }}">
                                                                                 </div>
                                                                                 <div class="formbold-mb-3">
                                                                                     <label

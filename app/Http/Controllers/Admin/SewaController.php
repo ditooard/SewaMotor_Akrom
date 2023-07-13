@@ -17,7 +17,7 @@ class SewaController extends Controller
     }
     public function statusSewa()
     {
-        $dataSewa = Sewa::all();
+        $dataSewa = Sewa::with('penyewa.pengguna')->get();
         return view('statusSewa', compact('dataSewa'));
     }
     public function validasiSewa(Request $request, $id)
