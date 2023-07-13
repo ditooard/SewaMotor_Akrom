@@ -157,114 +157,114 @@
 
                                                                 </td>
                                                             </tr>
-                                                        @endforeach
-                                                        @if (isset($item))
-                                                            <div id="myModal{{ $item->id }}" class="modal fade"
-                                                                role="dialog">
-                                                                <div class="modal-dialog">
-                                                                    <!-- konten modal-->
-                                                                    <div class="modal-content">
-                                                                        <!-- heading modal -->
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close"
-                                                                                data-dismiss="modal">&times;</button>
-                                                                        </div>
-                                                                        <!-- body modal -->
-                                                                        <div class="modal-body">
-                                                                            <form>
-                                                                                <div class="text-center">
-                                                                                    <img src="{{ asset('img/' . $item->foto_ktp) }}"
-                                                                                        class="img-thumbnail"
-                                                                                        alt="{{ $item->foto_ktp }}">
-                                                                                </div>
-
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputEmail1">NIK</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputEmail1"
-                                                                                        aria-describedby="emailHelp"
-                                                                                        value="{{ $item->nik }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">NAMA</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->pengguna->name }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Tempat
-                                                                                        Lahir</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->tempat_lahir }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Tanggal
-                                                                                        Lahir</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ \Carbon\Carbon::parse($item->tanggal_lahir)->isoFormat('dddd, DD/MM/YYYY') }}">
-
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Alamat</label>
-                                                                                    <textarea type="text" class="form-control" id="exampleInputtext1">{{ $item->alamat }}</textarea>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">RT/RW</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->rt_rw }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Kel/Desa</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->kelurahan }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Kecamatan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->kecamatan }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Pekerjaan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->pekerjaan }}">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="exampleInputtext1">Kewarganegaraan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputtext1"
-                                                                                        value="{{ $item->kewarganegaraan }}">
-                                                                                </div>
-                                                                            </form>
+                                                            @if (isset($item))
+                                                                <div id="myModal{{ $item->id }}" class="modal fade"
+                                                                    role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <!-- konten modal-->
+                                                                        <div class="modal-content">
+                                                                            <!-- heading modal -->
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close"
+                                                                                    data-dismiss="modal">&times;</button>
+                                                                            </div>
+                                                                            <!-- body modal -->
+                                                                            <div class="modal-body">
+                                                                                <form>
+                                                                                    <div class="text-center">
+                                                                                        <img src="{{ asset('img/' . $item->foto_ktp) }}"
+                                                                                            class="img-thumbnail"
+                                                                                            alt="{{ $item->foto_ktp }}">
+                                                                                    </div>
+    
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">NIK</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputEmail1"
+                                                                                            aria-describedby="emailHelp"
+                                                                                            value="{{ $item->nik }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">NAMA</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->pengguna->name }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Tempat
+                                                                                            Lahir</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->tempat_lahir }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Tanggal
+                                                                                            Lahir</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ \Carbon\Carbon::parse($item->tanggal_lahir)->isoFormat('dddd, DD/MM/YYYY') }}">
+    
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Alamat</label>
+                                                                                        <textarea type="text" class="form-control" id="exampleInputtext1">{{ $item->alamat }}</textarea>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">RT/RW</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->rt_rw }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Kel/Desa</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->kelurahan }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Kecamatan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->kecamatan }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Pekerjaan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->pekerjaan }}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputtext1">Kewarganegaraan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="exampleInputtext1"
+                                                                                            value="{{ $item->kewarganegaraan }}">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        @endif
+                                                            @endif
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
 

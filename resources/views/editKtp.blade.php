@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
@@ -60,6 +61,15 @@
                 <div class="container-fluid">
                     <div class="container-fluid">
                         <!-- DataTales Example -->
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <div class="text-center">
@@ -77,12 +87,13 @@
                             @endif --}}
 
                             <div class="formbold-main-wrapper">
-                                <form action="" method="POST">
+                                <form id="ubahAkunForm" action="{{ route('editAkun') }}" method="POST"
+                                    onsubmit="return confirm('Apakah anda ingin mengubah akun?')">
                                     @csrf
                                     @method('PUT')
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> Nama </label>
-                                        <input type="text" name="nama" id="age" class="formbold-form-input"
+                                        <input type="text" name="name" id="age" class="formbold-form-input"
                                             required value="{{ Auth::user()->name }}" />
                                     </div>
 
@@ -94,20 +105,21 @@
 
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> Password </label>
-                                        <input type="text" name="name" id="age" class="formbold-form-input"
-                                            value="" required />
+                                        <input type="password" name="password" id="age"
+                                            class="formbold-form-input" value="" />
                                     </div>
 
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> Confirm Password </label>
-                                        <input type="text" name="name" id="age" class="formbold-form-input"
-                                            value="" required />
+                                        <input type="password" name="confirm_password" id="age"
+                                            class="formbold-form-input" value="" />
                                     </div>
 
                                     <div class="text-center">
                                         <button type="submit" class="formbold-btn">Submit</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                         <style>
@@ -327,11 +339,12 @@
                             @endif --}}
 
                             <div class="formbold-main-wrapper">
-                                <form action="" method="" enctype="multipart/form-data">
-                                    {{-- @csrf --}}
-                                    {{-- @method('PUT') --}}
+                                <form action="{{ route('editProfile') }}" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda ingin detail KTP?')">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="text-center">
-                                        <img src="" class="img-thumbnail" alt="Cinque Terre">
+                                        <img src="{{ asset('img/' . $dataCustomer->foto_ktp) }}" class="img-thumbnail"
+                                            alt="Cinque Terre">
                                     </div>
 
                                     <div class="formbold-mb-3">
@@ -339,65 +352,64 @@
                                             Uploud Foto KTP baru anda
                                         </label>
                                         <input type="file" name="foto_ktp" id="upload"
-                                            class="formbold-form-input formbold-form-file" required />
+                                            class="formbold-form-input formbold-form-file"/>
                                     </div>
 
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> NIK </label>
-                                        <input type="text" name="nik" id="age" class="formbold-form-input"
-                                            required />
+                                        <input type="text" name="nik" id="age"
+                                            class="formbold-form-input" value="{{ $dataCustomer->nik }}" required />
                                     </div>
-
-                                    <div class="formbold-mb-3">
-                                        <label for="age" class="formbold-form-label"> Nama </label>
-                                        <input type="text" name="name" id="age"
-                                            class="formbold-form-input" value="" required />
-
-                                    </div>
-
                                     <div class="formbold-input-wrapp formbold-mb-3">
                                         <div>
                                             <label for="age" class="formbold-form-label"> Tempat Lahir </label>
                                             <input type="text" name="tempat_lahir" id="age"
-                                                class="formbold-form-input" required />
+                                                class="formbold-form-input" required
+                                                value="{{ $dataCustomer->tempat_lahir }}" />
 
                                             <label for="dob" class="formbold-form-label"> Tanggal Lahir</label>
                                             <input type="date" name="tanggal_lahir" id="dob"
-                                                class="formbold-form-input" required />
+                                                class="formbold-form-input" required
+                                                value="{{ $dataCustomer->tanggal_lahir }}" />
                                         </div>
                                     </div>
 
                                     <div class="formbold-mb-3">
                                         <label for="email" class="formbold-form-label">Alamat</label>
-                                        <textarea class="form-control" name="alamat" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea class="form-control" name="alamat" id="exampleFormControlTextarea1" rows="3">{{ $dataCustomer->alamat }}</textarea>
                                     </div>
 
                                     <div class="formbold-input-wrapp formbold-mb-3">
                                         <div>
                                             <label for="age" class="formbold-form-label"> RT/RW </label>
                                             <input type="text" name="rt_rw" id="age"
-                                                class="formbold-form-input" required />
+                                                class="formbold-form-input" required
+                                                value="{{ $dataCustomer->rt_rw }}" />
 
                                             <label for="age" class="formbold-form-label"> Kel/Desa </label>
                                             <input type="text" name="kelurahan" id="age"
-                                                class="formbold-form-input" required />
+                                                class="formbold-form-input" required
+                                                value="{{ $dataCustomer->kelurahan }}" />
 
                                             <label for="age" class="formbold-form-label"> Kecamatan </label>
                                             <input type="text" name="kecamatan" id="age"
-                                                class="formbold-form-input" required />
+                                                class="formbold-form-input" required
+                                                value="{{ $dataCustomer->kecamatan }}" />
                                         </div>
                                     </div>
 
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> Pekerjaan </label>
                                         <input type="text" name="pekerjaan" id="age"
-                                            class="formbold-form-input" required />
+                                            class="formbold-form-input" required
+                                            value="{{ $dataCustomer->pekerjaan }}" />
                                     </div>
 
                                     <div class="formbold-mb-3">
                                         <label for="age" class="formbold-form-label"> Kewarganegaraan </label>
                                         <input type="text" name="kewarganegaraan" id="age"
-                                            class="formbold-form-input" required />
+                                            class="formbold-form-input" required
+                                            value="{{ $dataCustomer->kewarganegaraan }}" />
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="formbold-btn">Submit</button>
@@ -651,7 +663,6 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

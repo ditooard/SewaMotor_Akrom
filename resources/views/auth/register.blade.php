@@ -58,7 +58,7 @@
             <!-- Image Logo -->
             <i href="#">
                 <img src="images/akrom.jpg" width="220px" height="80px">
-            </i> 
+            </i>
 
             <!-- Mobile Menu Toggle Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -94,36 +94,59 @@
                         <x-auth-session-status class="mb-4" :status="session('status')" />
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-                            <!-- Name -->
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('name') ? 'has-error has-danger' : '' }}">
                                 <input type="text" class="form-control-input" name="name" id="name"
                                     value="{{ old('name') }}" required autofocus autocomplete="name">
                                 <label class="label-control" for="name" :value="__('Name')">Nama</label>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
 
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('level') ? 'has-error has-danger' : '' }}">
                                 <input type="hidden" class="form-control-input" name="level" id="level"
                                     value="customer" required autofocus autocomplete="level">
+
+                                @if ($errors->has('level'))
+                                    <span class="help-block">{{ $errors->first('level') }}</span>
+                                @endif
                             </div>
+
                             <!-- Email Address -->
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('email') ? 'has-error has-danger' : '' }}">
                                 <input type="email" class="form-control-input" name="email" id="email"
                                     required="" value="{{ old('email') }}" required>
                                 <label class="label-control" for="lemail">Email</label>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
+
                             <!-- Password -->
-                            <div class="form-group has-error has-danger">
+                            <div class="form-group {{ $errors->has('password') ? 'has-error has-danger' : '' }}">
                                 <input type="password" class="form-control-input" name="password" id="password"
                                     required="" value="{{ old('password') }}" required>
                                 <label class="label-control" for="lpassword">Password</label>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">{{ $errors->first('password') }}</span>
+                                @endif
                             </div>
 
                             <!-- Confirm Password -->
-                            <div class="form-group has-error has-danger">
+                            <div
+                                class="form-group {{ $errors->has('password_confirmation') ? 'has-error has-danger' : '' }}">
                                 <input type="password" class="form-control-input" name="password_confirmation"
                                     id="password_confirmation" required autocomplete="new-password">
                                 <label class="label-control" for="lpassword">Confirm Password</label>
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
+                                @endif
                             </div>
+
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-primary-button a href="inputKtp" class="form-control-submit-button">
