@@ -169,7 +169,7 @@
                                                                 </td>
                                                                 <td>
                                                                     @php
-                                                                        $totalHarga = $durasiSewa * $item->barang_sewa->harga_sewa;
+                                                                        {{($totalHarga = ($cekMembership->membership == 'Member') ? number_format($item->barang_sewa->harga_sewa * $durasiSewa * 0.8, 0, ',', '.') : number_format($item->barang_sewa->harga_sewa * $durasiSewa, 0, ',', '.')) }}
                                                                     @endphp
                                                                     {{ $totalHarga }}
                                                                 </td>

@@ -447,106 +447,106 @@
 
                                                                     </td>
                                                                 </tr>
-                                                            @endforeach
-                                                            @if (isset($item))
-                                                                <div id="myModal{{ $item->id }}"
-                                                                    class="modal fade" role="dialog">
-                                                                    <div class="modal-dialog">
-                                                                        <!-- konten modal-->
-                                                                        <div class="modal-content">
-                                                                            <!-- heading modal -->
-                                                                            <div class="modal-header">
-                                                                                <button type="button" class="close"
-                                                                                    data-dismiss="modal">&times;</button>
-                                                                            </div>
-                                                                            <!-- body modal -->
-                                                                            <div class="modal-body">
-                                                                                <form enctype="multipart/form-data"
-                                                                                    action="{{ route('editDataMotor', $item->id) }}"
-                                                                                    method="POST">
-                                                                                    @csrf
-                                                                                    @method('PUT')
-                                                                                    <div class="image">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1">
-                                                                                            Foto Kendaraan</label>
-                                                                                        <img src="{{ asset('image_vehicle/' . $item->foto_kendaraan) }}"
-                                                                                            class="img-thumbnail"
-                                                                                            alt="Cinque Terre">
-                                                                                        <input type="file"
-                                                                                            name="foto_kendaraan"
-                                                                                            id="upload"
-                                                                                            class="formbold-form-input formbold-form-file" />
-                                                                                        <label for="upload"
-                                                                                            class="formbold-form-label">
-                                                                                            * Batas maksimal 2MB
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1">Tipe
-                                                                                            Sewa</label>
-                                                                                        <select
-                                                                                            class="formbold-form-input"
-                                                                                            name="tipe_sewa"
-                                                                                            id="occupation">
-                                                                                            <option value="Premium"
-                                                                                                {{ $item->tipe_sewa == 'Premium' ? 'selected' : '' }}>
-                                                                                                Premium
-                                                                                            </option>
-                                                                                            <option value="Spesial"
-                                                                                                {{ $item->tipe_sewa == 'Spesial' ? 'selected' : '' }}>
-                                                                                                Spesial
-                                                                                            </option>
-
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1">Tipe
-                                                                                            Kendaraan</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            name="tipe_kendaraan"
-                                                                                            id="exampleInputtext1"
-                                                                                            value="{{ $item->tipe_kendaraan }}">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputtext1">Harga
-                                                                                            Sewa</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            id="exampleInputtext1"
-                                                                                            name="harga_sewa"
-                                                                                            value="{{ $item->harga_sewa }}">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputtext1">Plat
-                                                                                            Nomor</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            name="plat_nomor"
-                                                                                            id="exampleInputtext1"
-                                                                                            value="{{ $item->plat_nomor }}">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputtext1">Spesifikasi</label>
-                                                                                        <textarea type="text" name="spesifikasi" class="form-control" id="exampleInputtext1">{{ $item->spesifikasi }}</textarea>
-                                                                                    </div>
-                                                                                    <div class="text-center">
-                                                                                        <button type="submit"
-                                                                                            onclick="return confirm('Apakah Anda yakin ingin mengedit data?')"
-                                                                                            class="formbold-btn">EDIT</button>
-                                                                                    </div>
-                                                                                </form>
+                                                                @if (isset($item))
+                                                                    <div id="myModal{{ $item->id }}"
+                                                                        class="modal fade" role="dialog">
+                                                                        <div class="modal-dialog">
+                                                                            <!-- konten modal-->
+                                                                            <div class="modal-content">
+                                                                                <!-- heading modal -->
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close"
+                                                                                        data-dismiss="modal">&times;</button>
+                                                                                </div>
+                                                                                <!-- body modal -->
+                                                                                <div class="modal-body">
+                                                                                    <form enctype="multipart/form-data"
+                                                                                        action="{{ route('editDataMotor', $item->id) }}"
+                                                                                        method="POST">
+                                                                                        @csrf
+                                                                                        @method('PUT')
+                                                                                        <div class="image">
+                                                                                            <label
+                                                                                                for="exampleInputPassword1">
+                                                                                                Foto Kendaraan</label>
+                                                                                            <img src="{{ asset('image_vehicle/' . $item->foto_kendaraan) }}"
+                                                                                                class="img-thumbnail"
+                                                                                                alt="Cinque Terre">
+                                                                                            <input type="file"
+                                                                                                name="foto_kendaraan"
+                                                                                                id="upload"
+                                                                                                class="formbold-form-input formbold-form-file" />
+                                                                                            <label for="upload"
+                                                                                                class="formbold-form-label">
+                                                                                                * Batas maksimal 2MB
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                for="exampleInputPassword1">Tipe
+                                                                                                Sewa</label>
+                                                                                            <select
+                                                                                                class="formbold-form-input"
+                                                                                                name="tipe_sewa"
+                                                                                                id="occupation">
+                                                                                                <option value="Premium"
+                                                                                                    {{ $item->tipe_sewa == 'Premium' ? 'selected' : '' }}>
+                                                                                                    Premium
+                                                                                                </option>
+                                                                                                <option value="Spesial"
+                                                                                                    {{ $item->tipe_sewa == 'Spesial' ? 'selected' : '' }}>
+                                                                                                    Spesial
+                                                                                                </option>
+    
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                for="exampleInputPassword1">Tipe
+                                                                                                Kendaraan</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                name="tipe_kendaraan"
+                                                                                                id="exampleInputtext1"
+                                                                                                value="{{ $item->tipe_kendaraan }}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                for="exampleInputtext1">Harga
+                                                                                                Sewa</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                id="exampleInputtext1"
+                                                                                                name="harga_sewa"
+                                                                                                value="{{ $item->harga_sewa }}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                for="exampleInputtext1">Plat
+                                                                                                Nomor</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                name="plat_nomor"
+                                                                                                id="exampleInputtext1"
+                                                                                                value="{{ $item->plat_nomor }}">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                for="exampleInputtext1">Spesifikasi</label>
+                                                                                            <textarea type="text" name="spesifikasi" class="form-control" id="exampleInputtext1">{{ $item->spesifikasi }}</textarea>
+                                                                                        </div>
+                                                                                        <div class="text-center">
+                                                                                            <button type="submit"
+                                                                                                onclick="return confirm('Apakah Anda yakin ingin mengedit data?')"
+                                                                                                class="formbold-btn">EDIT</button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            @endif
+                                                                @endif
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
 

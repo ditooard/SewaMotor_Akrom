@@ -143,113 +143,115 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
+                                                                @if (isset($item))
+                                                                    <script>
+                                                                        function validasiSetuju(kode) {
+                                                                            Swal.fire({
+                                                                                title: 'Apakah anda ingin menyetujui sebagai membership?',
+                                                                                html: `Nama : {{ $item->pengguna->name }}`,
+                                                                                icon: 'warning',
+                                                                                showCancelButton: true,
+                                                                                confirmButtonText: 'Yes',
+                                                                                cancelButtonText: 'No',
+                                                                                reverseButtons: true
+                                                                            }).then((result) => {
+                                                                                if (result.isConfirmed) {
+                                                                                    Swal.fire({
+                                                                                        title: 'Success!',
+                                                                                        text: 'Berhasil menyetujui Nama : {{ $item->pengguna->name }}',
+                                                                                        icon: 'success',
+                                                                                        showConfirmButton: false,
+                                                                                        timer: 1500
+                                                                                    }).then(() => {
+                                                                                        // Create a hidden form
+                                                                                        const form = document.createElement('form');
+                                                                                        form.method = 'POST';
+                                                                                        form.action = `{{ route('setujuiMember', ['id' => 'kode']) }}`.replace('kode',
+                                                                                            kode); // Update with the appropriate URL
+                                                                                        document.body.appendChild(form);
+
+                                                                                        // Add the CSRF token input field to the form
+                                                                                        const csrfInput = document.createElement('input');
+                                                                                        csrfInput.type = 'hidden';
+                                                                                        csrfInput.name = '_token';
+                                                                                        csrfInput.value = '{{ csrf_token() }}'; // Update if necessary
+                                                                                        form.appendChild(csrfInput);
+
+                                                                                        // Add the hidden method field for PUT request
+                                                                                        const methodInput = document.createElement('input');
+                                                                                        methodInput.type = 'hidden';
+                                                                                        methodInput.name = '_method';
+                                                                                        methodInput.value = 'PUT';
+                                                                                        form.appendChild(methodInput);
+
+                                                                                        // Submit the form
+                                                                                        form.submit();
+
+                                                                                    });
+                                                                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                                                                    Swal.fire(
+                                                                                        'Cancelled',
+                                                                                        'Gagal memberikan persetujuan',
+                                                                                        'error'
+                                                                                    );
+                                                                                }
+                                                                            });
+                                                                        }
+
+
+                                                                        function validasiTolak(kode) {
+                                                                            Swal.fire({
+                                                                                title: 'Apakah anda ingin menolak sebagai membership?',
+                                                                                html: `Nama : {{ $item->pengguna->name }}`,
+                                                                                icon: 'error',
+                                                                                showCancelButton: true,
+                                                                                confirmButtonText: 'Yes',
+                                                                                cancelButtonText: 'No',
+                                                                                reverseButtons: true
+                                                                            }).then((result) => {
+                                                                                if (result.isConfirmed) {
+                                                                                    Swal.fire(
+                                                                                        'Success!',
+                                                                                        'Berhasil memberikan penolakan membership',
+                                                                                        'success'
+                                                                                    ).then(() => {
+                                                                                        // Create a hidden form
+                                                                                        const form = document.createElement('form');
+                                                                                        form.method = 'POST';
+                                                                                        form.action = `{{ route('tolakMember', ['id' => 'kode']) }}`.replace('kode',
+                                                                                            kode); // Update with the appropriate URL
+                                                                                        document.body.appendChild(form);
+
+                                                                                        // Add the CSRF token input field to the form
+                                                                                        const csrfInput = document.createElement('input');
+                                                                                        csrfInput.type = 'hidden';
+                                                                                        csrfInput.name = '_token';
+                                                                                        csrfInput.value = '{{ csrf_token() }}'; // Update if necessary
+                                                                                        form.appendChild(csrfInput);
+
+                                                                                        // Add the hidden method field for PUT request
+                                                                                        const methodInput = document.createElement('input');
+                                                                                        methodInput.type = 'hidden';
+                                                                                        methodInput.name = '_method';
+                                                                                        methodInput.value = 'PUT';
+                                                                                        form.appendChild(methodInput);
+
+                                                                                        // Submit the form
+                                                                                        form.submit();
+
+                                                                                    });
+                                                                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                                                                    Swal.fire(
+                                                                                        'Cancelled',
+                                                                                        'Gagal memberikan persetujuan',
+                                                                                        'error'
+                                                                                    );
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    </script>
+                                                                @endif
                                                             @endforeach
-                                                                <script>
-                                                                    function validasiSetuju(kode) {
-                                                                        Swal.fire({
-                                                                            title: 'Apakah anda ingin menyetujui sebagai membership?',
-                                                                            html: `Nama : {{ $item->pengguna->name }}`,
-                                                                            icon: 'warning',
-                                                                            showCancelButton: true,
-                                                                            confirmButtonText: 'Yes',
-                                                                            cancelButtonText: 'No',
-                                                                            reverseButtons: true
-                                                                        }).then((result) => {
-                                                                            if (result.isConfirmed) {
-                                                                                Swal.fire({
-                                                                                    title: 'Success!',
-                                                                                    text: 'Berhasil menyetujui Nama : {{ $item->pengguna->name }}',
-                                                                                    icon: 'success',
-                                                                                    showConfirmButton: false,
-                                                                                    timer: 1500
-                                                                                }).then(() => {
-                                                                                    // Create a hidden form
-                                                                                    const form = document.createElement('form');
-                                                                                    form.method = 'POST';
-                                                                                    form.action = `{{ route('setujuiMember', ['id' => 'kode']) }}`.replace('kode',
-                                                                                        kode); // Update with the appropriate URL
-                                                                                    document.body.appendChild(form);
-
-                                                                                    // Add the CSRF token input field to the form
-                                                                                    const csrfInput = document.createElement('input');
-                                                                                    csrfInput.type = 'hidden';
-                                                                                    csrfInput.name = '_token';
-                                                                                    csrfInput.value = '{{ csrf_token() }}'; // Update if necessary
-                                                                                    form.appendChild(csrfInput);
-
-                                                                                    // Add the hidden method field for PUT request
-                                                                                    const methodInput = document.createElement('input');
-                                                                                    methodInput.type = 'hidden';
-                                                                                    methodInput.name = '_method';
-                                                                                    methodInput.value = 'PUT';
-                                                                                    form.appendChild(methodInput);
-
-                                                                                    // Submit the form
-                                                                                    form.submit();
-
-                                                                                });
-                                                                            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                                                                Swal.fire(
-                                                                                    'Cancelled',
-                                                                                    'Gagal memberikan persetujuan',
-                                                                                    'error'
-                                                                                );
-                                                                            }
-                                                                        });
-                                                                    }
-
-
-                                                                    function validasiTolak(kode) {
-                                                                        Swal.fire({
-                                                                            title: 'Apakah anda ingin menolak sebagai membership?',
-                                                                            html: `Nama : {{ $item->pengguna->name }}`,
-                                                                            icon: 'error',
-                                                                            showCancelButton: true,
-                                                                            confirmButtonText: 'Yes',
-                                                                            cancelButtonText: 'No',
-                                                                            reverseButtons: true
-                                                                        }).then((result) => {
-                                                                            if (result.isConfirmed) {
-                                                                                Swal.fire(
-                                                                                    'Success!',
-                                                                                    'Berhasil memberikan penolakan membership',
-                                                                                    'success'
-                                                                                ).then(() => {
-                                                                                    // Create a hidden form
-                                                                                    const form = document.createElement('form');
-                                                                                    form.method = 'POST';
-                                                                                    form.action = `{{ route('tolakMember', ['id' => 'kode']) }}`.replace('kode',
-                                                                                        kode); // Update with the appropriate URL
-                                                                                    document.body.appendChild(form);
-
-                                                                                    // Add the CSRF token input field to the form
-                                                                                    const csrfInput = document.createElement('input');
-                                                                                    csrfInput.type = 'hidden';
-                                                                                    csrfInput.name = '_token';
-                                                                                    csrfInput.value = '{{ csrf_token() }}'; // Update if necessary
-                                                                                    form.appendChild(csrfInput);
-
-                                                                                    // Add the hidden method field for PUT request
-                                                                                    const methodInput = document.createElement('input');
-                                                                                    methodInput.type = 'hidden';
-                                                                                    methodInput.name = '_method';
-                                                                                    methodInput.value = 'PUT';
-                                                                                    form.appendChild(methodInput);
-
-                                                                                    // Submit the form
-                                                                                    form.submit();
-
-                                                                                });
-                                                                            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                                                                                Swal.fire(
-                                                                                    'Cancelled',
-                                                                                    'Gagal memberikan persetujuan',
-                                                                                    'error'
-                                                                                );
-                                                                            }
-                                                                        })
-                                                                    }
-                                                                </script>
                                                         @endif
                                                     </tbody>
                                                 </table>

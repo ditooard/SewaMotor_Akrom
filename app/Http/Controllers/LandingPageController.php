@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class LandingPageController extends Controller
 {
     public function index(){
-        $dataKendaraan = Motor::take(3)->get();
+        $dataKendaraan = Motor::all();
         return view('welcome', compact('dataKendaraan'));
     }
 }
