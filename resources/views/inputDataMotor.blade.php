@@ -116,10 +116,13 @@
                                             <label class="formbold-form-label">Tipe Sewa</label>
                                             <select class="formbold-form-input" name="tipe_sewa" id="occupation">
                                                 <option value="Premium"
-                                                    {{ old('tipe_sewa') == 'Premium' ? 'selected' : '' }}>Premium
+                                                    {{ old('tipe_sewa') == 'Biasa' ? 'selected' : '' }}>Biasa
                                                 </option>
                                                 <option value="Spesial"
                                                     {{ old('tipe_sewa') == 'Spesial' ? 'selected' : '' }}>Spesial
+                                                </option>
+                                                <option value="Premium"
+                                                    {{ old('tipe_sewa') == 'Premium' ? 'selected' : '' }}>Premium
                                                 </option>
                                             </select>
                                         </div>
