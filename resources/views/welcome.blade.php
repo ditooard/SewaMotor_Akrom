@@ -220,7 +220,7 @@
                 <!-- Card -->
                 @if (isset($dataKendaraan))
                     @forelse ($dataKendaraan as $item)
-                        <div class="card w-20 h-50">
+                        <div class="card w-20 h-20">
                             <div class="card-image">
                                 <img class="img-fluid" src="{{ asset('image_vehicle/' . $item->foto_kendaraan) }}"
                                     alt="alternative">

@@ -153,7 +153,7 @@
                                                                         data-target="#myModal{{ $item->id }}">
                                                                         <i class="fas fa-info"></i>
                                                                     </a>
-                                                                    <a href="https://wa.me/6281357426470?text=Halo%2C+Admin%0D%0A%0D%0ASaya,+{{ Auth::user()->name }}+akan+membayar+sewa+kendaraan+{{ $item->barang_sewa->tipe_kendaraan }}%0D%0A%0D%0A*Total+Harga+Sewa%3A*%0D%0A{{ 'Rp ' . ($cekMembership->membership == 'Member' ? number_format($item->barang_sewa->harga_sewa * $durasiSewa * 0.8, 0, ',', '.') : number_format($item->barang_sewa->harga_sewa * $durasiSewa, 0, ',', '.')) }}
+                                                                    <a href="https://wa.me/6285726238765?text=Halo%2C+AdminAkromRentalMotor%0D%0A%0D%0ASaya,+{{ Auth::user()->name }}+akan+membayar+sewa+kendaraan+{{ $item->barang_sewa->tipe_kendaraan }}%0D%0A%0D%0A*Total+Harga+Sewa%3A*%0D%0A{{ 'Rp ' . ($cekMembership->membership == 'Member' ? number_format($item->barang_sewa->harga_sewa * $durasiSewa * 0.8, 0, ',', '.') : number_format($item->barang_sewa->harga_sewa * $durasiSewa, 0, ',', '.')) }}
 "
                                                                         class="btn btn-success btn-circle">
                                                                         <i class="fas fa-money-bill"></i>
